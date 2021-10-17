@@ -2,7 +2,9 @@ package com.project.medicumzone;
 
 import com.project.medicumzone.model.enitity.AppUser;
 import com.project.medicumzone.model.enitity.Authority;
+import com.project.medicumzone.model.enitity.City;
 import com.project.medicumzone.repository.AppUserRepository;
+import com.project.medicumzone.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +21,8 @@ public class MedicumZoneApplication {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private AppUserRepository appUserRepository;
+    @Autowired
+    private CityRepository cityRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(MedicumZoneApplication.class, args);
@@ -30,6 +34,7 @@ public class MedicumZoneApplication {
 //        authorityList.add(new Authority("ADMIN","Admin role"));
 //        AppUser appUser = new AppUser();
 //
+
 
     }
 

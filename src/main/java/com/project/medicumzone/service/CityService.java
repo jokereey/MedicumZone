@@ -5,6 +5,7 @@ import com.project.medicumzone.repository.CityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -15,5 +16,7 @@ public class CityService {
 
     public List<City> getAllCities(){
         return  cityRepository.findAll();
+
+
     }
 }
