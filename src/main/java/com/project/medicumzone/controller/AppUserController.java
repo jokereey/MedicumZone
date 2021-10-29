@@ -20,6 +20,6 @@ public class AppUserController {
     @PostMapping
     public ResponseEntity<String> addNewUser(@RequestBody AppUser appUser){
         appUserService.addNewUser(appUser);
-        return new ResponseEntity<>(HttpStatus.CREATED)   ;
+        return new ResponseEntity<>(HttpStatus.CREATED)     ;
     }
 }
