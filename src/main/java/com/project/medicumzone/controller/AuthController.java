@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 @CrossOrigin
 public class AuthController {
 

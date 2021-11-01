@@ -1,5 +1,6 @@
 package com.project.medicumzone.model.enitity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,25 +14,27 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class City {
+@AllArgsConstructor
+public class DoctorSpecialization {
     @Id
-
     @SequenceGenerator(
-            name = "city_sequence",
-            sequenceName = "city_sequence",
+            name = "doc_spec_sequence",
+            sequenceName = "doc_spec_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
-            generator = "city_sequence",
+            generator = "doc_spec_sequence",
             strategy = GenerationType.SEQUENCE
     )
     private Long id;
-    private String name;
-    @OneToMany(mappedBy = "city",cascade = CascadeType.PERSIST,fetch =FetchType.EAGER)
-    private List<Clinic> clinics = new ArrayList<>();
 
-    public City(String name) {
+    private String name;
+
+    @OneToMany(mappedBy = "doctorSpecialization",cascade = {CascadeType.PERSIST},fetch = FetchType.LAZY)
+    private List<Specialization> specializations = new ArrayList<>();
+
+    public DoctorSpecialization(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
-
 }
