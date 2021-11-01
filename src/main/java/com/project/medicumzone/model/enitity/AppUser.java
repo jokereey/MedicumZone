@@ -81,4 +81,25 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return this.enabled;
     }
+
+    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+        this.enabled = enabled;
+    }
+
+    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.dob = dob;
+        this.phoneNumber = phoneNumber;
+    }
 }
