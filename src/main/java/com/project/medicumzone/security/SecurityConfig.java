@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers
-                                ("/api/cities",
+                                ("/api/cities ",
                                         "/api/v1/auth/login",
                                         "/api/users/add",
                                         "/swagger-ui/**",
