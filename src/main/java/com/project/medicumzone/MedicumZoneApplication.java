@@ -29,12 +29,12 @@ public class MedicumZoneApplication {
     }
     @PostConstruct
     protected  void init (){
+        //aa
 //        List<Authority> authorityList = new ArrayList<>();
 //        authorityList.add(new Authority("USER","User role"));
 //        authorityList.add(new Authority("ADMIN","Admin role"));
 //        AppUser appUser = new AppUser();
 //
-        System.out.println("Dzien dobry testuje kod");
 
     }
 
