@@ -30,6 +30,7 @@ public class Authority implements GrantedAuthority {
         this.roleDescription = roleDescription;
     }
 
+
     @Override
     public String getAuthority() {
         return roleCode;
