@@ -1,0 +1,48 @@
+.corner-icon-instagram{
+
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  height: 40px;
+}
+.corner-icon-facebook{
+
+  position: absolute;
+  right: 60px;
+  top: 0px;
+  height: 40px;
+
+}
+.corner-icon-twitter{
+
+  position: absolute;
+  right: 100px;
+  top: 0px;
+  height: 40px;
+
+}
+.login-label{
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  font-family: Arial, serif;
+
+}
+.registration-label{
+  position: absolute;
+  left: 140px;
+  top: 0px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+
+}
+.registration-label:hover{
+  color:gainsboro;
+}
+.login-label:hover{
+  color:gainsboro;
+}
