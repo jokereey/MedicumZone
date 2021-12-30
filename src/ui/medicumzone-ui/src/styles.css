@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
+
+body{
+  font-family: 'Lato', sans-serif;
+  color: black;
+  border-color: #77bb3f;
+}
+.bg-med{
+  background-color: #77bb3f;
+}
+.t-med{
+  color: #77bb3f;
+}

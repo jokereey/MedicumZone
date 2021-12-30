@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  facebookLink: string ='https://facebook.com/medicum-zone';
+  instagramLink: string ='https://instagram.com/medicum-zone';
+  twitterLink: string ='https://twitter.com/medicum-zone';
+  headerText : string = "Zadbaj o swoje zdrowie już dziś!"
+  phoneNumber: string = '+12 630 80 00';
+  logoPath: string ="assets/images/Medicum-Zone-logos.jpeg";
   constructor() { }
 
   ngOnInit(): void {
+  }
+  onLoginClick(){
+  console.log('not implemented yet');
+  }
+  onRegistryClick(){
+    console.log('not implemented yet');
   }
 
 }
