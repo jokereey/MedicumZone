@@ -28,7 +28,7 @@
   height: 40px;
   background-color: transparent;
   border: none;
-  font-family: Arial, serif;
+
 
 }
 .registration-label{
@@ -41,8 +41,8 @@
 
 }
 .registration-label:hover{
-  color:gainsboro;
+  color: #77bb3f;
 }
-.login-label:hover{
-  color:gainsboro;
+.login-label:hover {
+  color: #77bb3f;
 }
