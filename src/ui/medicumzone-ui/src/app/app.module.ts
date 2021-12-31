@@ -3,14 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CovidStatsComponent } from './components/covid-stats/covid-stats.component';
+import { NavigatorComponent } from './components/navigator/navigator.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CovidNumbersComponent } from './components/covid-stats/covid-numbers/covid-numbers/covid-numbers.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    CovidStatsComponent,
+    NavigatorComponent,
+    AboutUsComponent,
+    FooterComponent,
+    CovidNumbersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
