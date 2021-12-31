@@ -7,7 +7,6 @@ import { CovidStatsComponent } from './components/covid-stats/covid-stats.compon
 import { NavigatorComponent } from './components/navigator/navigator.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CovidNumbersComponent } from './components/covid-stats/covid-numbers/covid-numbers/covid-numbers.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -18,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavigatorComponent,
     AboutUsComponent,
     FooterComponent,
-    CovidNumbersComponent
+
   ],
   imports: [
     BrowserModule,
