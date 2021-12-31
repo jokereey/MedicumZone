@@ -1,0 +1,37 @@
+<div class="container-lg border-top mt-5">
+  <div class="row g-4 justify-content-center align-items-center">
+    <div class="col-md-5 text-center text-md-start">
+      <h1>
+        <div class="display-2">Zaszczep się</div>
+        <div class="display-5 text-muted">Zadbaj o siebie i bliskich</div>
+      </h1>
+      <p class="lead my-4 text-muted">Nie pozwól, aby wirus pokrzyżował twoje plany. Zapisz się na szczepienie już dziś
+        w jednej z poradni <span class="t-med">Medicum-Zone.</span></p>
+      <a href="#" class="btn btn-secondary btn-lg bg-med">Umów się na szczepienie</a>
+
+
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h3 class="modal-title">Statystyki COVID-19 z dnia {{todaysDate}}</h3>
+
+          </div>
+          <div class="modal-body">
+            <p> brak serwisu do pobierania danych </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button " class="btn  bg-med " (click)="modal.close('Close click')">Close</button>
+          </div>
+        </ng-template>
+
+
+      <a href="#sidebar" class="d-block mt-3" (click)="openWindowCustomClass(content)">Pokaż statystyki Covid-19 w Polsce</a>
+    </div>
+    <div class="col-md-5 text-center d-none d-md-block">
+      <!-- tooltip -->
+      <span class="tt" data-bs-placement="bottom" title="Covid stats">
+            <img src="/assets/images/covid.jpg" class="img-fluid" alt="ebook">
+          </span>
+    </div>
+  </div>
+</div>
+
