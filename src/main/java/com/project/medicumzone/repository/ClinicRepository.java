@@ -1,6 +1,6 @@
 package com.project.medicumzone.repository;
 
-import com.project.medicumzone.model.enitity.Clinic;
+import com.project.medicumzone.io.enitity.Clinic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

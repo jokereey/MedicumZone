@@ -1,7 +1,7 @@
 package com.project.medicumzone.security.service;
 
-import com.project.medicumzone.error.UserNotFoundException;
-import com.project.medicumzone.model.enitity.AppUser;
+import com.project.medicumzone.exception.UserNotFoundException;
+import com.project.medicumzone.io.enitity.AppUser;
 import com.project.medicumzone.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

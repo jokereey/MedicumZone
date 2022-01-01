@@ -1,8 +1,5 @@
 package com.project.medicumzone;
 
-import com.project.medicumzone.model.enitity.AppUser;
-import com.project.medicumzone.model.enitity.Authority;
-import com.project.medicumzone.model.enitity.City;
 import com.project.medicumzone.repository.AppUserRepository;
 import com.project.medicumzone.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class MedicumZoneApplication {
