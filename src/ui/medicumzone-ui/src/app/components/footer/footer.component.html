@@ -1,1 +1,33 @@
-<p>footer works!</p>
+<div class="container-xxl mt-5 border-top">
+  <footer class="bg-light text-center ">
+    <div class="container p-4 pb-0">
+      <section class="">
+        <form action="">
+          <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+              <p class="pt-2">
+                <strong>Zapisz się do naszego newslettera: </strong>
+              </p>
+            </div>
+            <div class="col-md-5 col-12">
+              <div class="form-outline mb-4">
+                <input  ngModel email #buttonValidation="ngModel" required minlength="4"  name="buttonValidation" type="email" #email class="form-control" placeholder="Tu wpisz swój adres email"  />
+              </div>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary mb-4" (click)="onNewsletter()" [disabled]="buttonValidation.invalid" >
+                Zapisz się
+              </button>
+            </div>
+          </div>
+        </form>
+        <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+      </section>
+    </div>
+
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-dark" href="https://medicumzone.com/">MedicumZone.pl</a>
+    </div>
+  </footer>
+</div>
