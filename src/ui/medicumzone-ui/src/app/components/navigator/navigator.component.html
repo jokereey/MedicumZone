@@ -1,41 +1,39 @@
-<div class="container-xxl">
-  <div class="row my-5  border-top">
-    <p class="display-6 text-start mt-5 text-center">Poznaj nasze możliwości</p>
-  </div>
-  <div class="row mb-1" >
-    <nav class="navbar navbar-expand-lg navbar-light bg-light  text-center">
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" data-bs-target="#main-nav"
-              aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse mx-5 text-center" id="navbarNavDropdown">
-        <ul class="navbar-nav ">
-          <li class="nav-item dropdown">
-            <a  (click)="click()" class="text-white nav-link dropdown-toggle fs-4 mx-4" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Lekarze i placówki
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item active fs-4 mx-5 ">
-            <a class="nav-link text-white" href="#">Szczepienia <span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item fs-4 mx-5">
-            <a class="nav-link text-white" href="#">Strefa wiedzy</a>
-          </li>
-          <li class="nav-item fs-4 mx-5">
-            <a class="nav-link text-white" href="#">Strefa studenta</a>
-          </li>
-          <li class="nav-item fs-4 mx-4">
-            <a class="nav-link text-white" href="#">Kontakt</a>
-          </li>
-
-        </ul>
+<div class="container-xxl my-5 color-white ">
+  <p class="display-5 text-center  border-top component-gap">Poznaj nasze możliwości</p>
+  <div id="carouse" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button  type="button" data-bs-target="#carouse" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Slide 1"></button>
+      <button class="bg-primary" type="button" data-bs-target="#carouse" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    </div>
+    <div class="carousel-inner mb-5">
+      <div class="carousel-item active" data-bs-interval="10000" >
+        <img src="assets/images/navigator/1.jpg" class="d-block w-100 img-fluid navigator-item" alt="...">
+        <div class="carousel-caption d-none d-md-block car-item border-primary rounded-3 bg-black" >
+          <h5>{{navigatorContent[0].header}}</h5>
+          <p>{{navigatorContent[0].description}}</p>
+        </div>
       </div>
-    </nav>
+      <div class="carousel-item " data-bs-interval="5000" *ngFor="let item of navigatorContent.slice(1)" >
+        <img src="assets/images/navigator/{{item.order}}.jpg" class="d-block w-100 img-fluid navigator-item" alt="..." (click)="click()">
+        <div class="carousel-caption d-none d-md-block car-item  border-primary rounded-3 bg-black" >
+          <h5>{{item.header}}</h5>
+          <p>{{item.description}}</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev " type="button" data-bs-target="#carouse" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-black border rounded-3 text-white" aria-hidden="true"></span>
+      <span class="visually-hidden ">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouse" data-bs-slide="next">
+      <span class="carousel-control-next-icon n bg-black border rounded-3 " aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+
 </div>

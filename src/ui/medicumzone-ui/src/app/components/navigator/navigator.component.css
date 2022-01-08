@@ -1,3 +1,14 @@
-.color-white{
+.car-item{
   color:white;
+}
+
+
+.img-section{
+  background: white;
+}
+.navigator-item:hover{
+  cursor: pointer;
+}
+.component-gap{
+  margin: 20px;
 }
