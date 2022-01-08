@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -8,6 +8,9 @@ import { NavigatorComponent } from './components/navigator/navigator.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ToastsContainer} from "./components/shared/toast/toasts-container.component";
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavigatorComponent,
     AboutUsComponent,
     FooterComponent,
+    ToastsContainer
 
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
