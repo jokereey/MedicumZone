@@ -3,3 +3,10 @@ export interface NavigatorItem {
   description: string,
   order: number
 }
+export interface CovidStats{
+  "deathsAtAll": string,
+  "deathsToday": string,
+  "infectedToday": string,
+  "infectedAtAll": string,
+  "recovered": string
+}

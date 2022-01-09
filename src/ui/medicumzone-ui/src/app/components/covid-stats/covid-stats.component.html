@@ -10,21 +10,31 @@
       <a href="#" class="btn btn-primary btn-lg bg-">Umów się na szczepienie</a>
 
 
-        <ng-template #content let-modal>
-          <div class="modal-header">
-            <h3 class="modal-title">Statystyki COVID-19 z dnia {{todaysDate}}</h3>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h3 class="modal-title">Statystyki COVID-19 z dnia {{todaysDate}}</h3>
 
-          </div>
-          <div class="modal-body">
-            <p> brak serwisu do pobierania danych </p>
-          </div>
-          <div class="modal-footer">
-            <a type="button" class="btn btn-primary text-white " (click)="modal.close('Close click')">Zamknij</a>
+        </div>
+        <div class="modal-body" *ngIf="isModalReady; else preloader">
+          <p>Całkowita liczba zgonów: {{covidSimpleStats.deathsAtAll}}</p>
+          <p>Liczba zgonów dzisiaj: {{covidSimpleStats.deathsToday}}</p>
+          <p>Całkowita liczba zarażonych: {{covidSimpleStats.infectedAtAll}}</p>
+          <p>Liczba zarażonych dzisiaj: {{covidSimpleStats.infectedToday}}</p>
+          <p>Całkowita Liczba wyzdrowiałych: {{covidSimpleStats.recovered}}</p>
+        </div>
+        <ng-template #preloader>
+          <div class="preloader-covid">
+            <app-preloader [message]="preloaderMessage"></app-preloader>
           </div>
         </ng-template>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-primary text-white " (click)="modal.close('Close click')">Zamknij</a>
+        </div>
+      </ng-template>
 
 
-      <a href="#sidebar" class="d-block mt-3" (click)="openWindowCustomClass(content)">Pokaż statystyki Covid-19 w Polsce</a>
+      <a href="#sidebar" class="d-block mt-3" (click)="openWindowCustomClass(content)">Pokaż statystyki Covid-19 w
+        Polsce</a>
     </div>
     <div class="col-md-5 text-center d-none d-md-block">
       <!-- tooltip -->

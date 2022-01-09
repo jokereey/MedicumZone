@@ -10,6 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastsContainer} from "./components/shared/toast/toasts-container.component";
 import {FormsModule} from "@angular/forms";
+import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import { PreloaderComponent } from './components/shared/preloader/preloader.component';
 
 
 @NgModule({
@@ -20,15 +22,17 @@ import {FormsModule} from "@angular/forms";
     NavigatorComponent,
     AboutUsComponent,
     FooterComponent,
-    ToastsContainer
+    ToastsContainer,
+    PreloaderComponent
 
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
