@@ -2,6 +2,7 @@ package com.project.medicumzone.service;
 
 import com.project.medicumzone.io.enitity.Client;
 import com.project.medicumzone.repository.ClientRepository;
+import com.project.medicumzone.service.interfaces.IClientService;
 import com.project.medicumzone.ui.model.request.NewClientRequestModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +14,11 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class ClientService {
+public class ClientService implements IClientService {
     @Autowired
     private final ClientRepository clientRepository;
 
+    @Override
     public void addNewClient(NewClientRequestModel clientToAdd){
         String phoneNumber = clientToAdd.getPhoneNumber();
         String email = clientToAdd.getEmail();

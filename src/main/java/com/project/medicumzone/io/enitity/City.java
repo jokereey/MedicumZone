@@ -1,5 +1,6 @@
 package com.project.medicumzone.io.enitity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +28,9 @@ public class City {
     )
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "city",cascade = CascadeType.PERSIST,fetch =FetchType.EAGER)
+
+    @JsonIgnoreProperties(value = {"city", "clinics"})
+    @OneToMany(mappedBy = "city",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     private List<Clinic> clinics = new ArrayList<>();
 
     public City(String name) {
