@@ -1,0 +1,30 @@
+// custom variable values
+$primary: #77bb3f;
+$light: white;
+
+// import the functions & variables
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+// custom theme colours
+$custom-theme-colors: (
+  "altlight": #000 ,
+  "altdark": #522192
+);
+
+// merge the maps to add new theme colors
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
+body{
+  font-family: 'Lato', sans-serif;
+  color: black;
+  border-color: #77bb3f;
+
+}
+.btn-primary{
+  color:white;
+}

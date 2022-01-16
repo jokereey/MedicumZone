@@ -1,0 +1,38 @@
+<div class="container xxl">
+  <app-preloader *ngIf="pending" message="{{preloaderMessage}}">
+
+  </app-preloader>
+
+  <div class="text-center border-bottom text-black" *ngIf="!pending">
+    <h3 class="mb-4">Panel logowania</h3>
+  </div>
+  <div class="row">
+    <div class="col-8 p-5 mt-5">
+      <form (submit)="sendLoginRequest()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input  #email type="email" class="form-control w-50" id="email" aria-describedby="emailHelp">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label ">Hasło</label>
+          <input #password type="password" class="form-control w-50 "  id="password">
+        </div>
+        <div class="my-2 fs-6 text-dark">
+          <label class="my-1 d-inline">{{forgetPasswordText}}</label>
+          <label class="d-inline ms-3">{{registerText}}</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Zaloguj się</button>
+      </form>
+    </div>
+    <div class="col-4">
+    <img src="assets/images/Medicum-Zone-logos_black.png" class="img-fluid " alt="">
+    </div>
+  </div>
+  <p *ngIf="loginError">
+    <ngb-alert type="danger" [dismissible]="false">
+      {{errorMessage}}
+    </ngb-alert>
+  </p>
+
+</div>

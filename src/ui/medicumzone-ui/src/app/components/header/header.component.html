@@ -1,52 +1,54 @@
-<nav class="navbar navbar-expand-md navbar-light pt-5 pb-4  ">
-  <div class="container-xxl">
-    <!-- navbar brand / title -->
-    <a class="navbar-brand justify-content-start" href="#intro">
+<div class="container">
+  <nav class="navbar navbar-expand-md navbar-light pt-5 pb-4  ">
+    <div class="container-xxl">
+      <!-- navbar brand / title -->
+      <a class="navbar-brand justify-content-start" href="#intro">
         <span class="text-secondary fw-bold">
           <img src="{{logoPath}}" height="120" width="120">
 
         </span>
-    </a>
-    <!-- toggle button for mobile nav -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-            aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      </a>
+      <!-- toggle button for mobile nav -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+              aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- navbar links -->
-    <div class="collapse navbar-collapse justify-content-center align-center" id="main-nav">
-      <ul class="navbar-nav ">
-        <li class="nav-item text-center">
-          <p class="display-6">{{headerText}}</p>
-          <i class="bi bi-telephone-fill d-inline display-6 t-med">{{phoneNumber}}</i>
-        </li>
-        <li class="nav-item mx-2">
-          <a href="{{instagramLink}}" class="nav-link">
-            <i class="bi bi-instagram corner-icon-instagram"></i>
-          </a>
-        </li>
-        <li class="nav-item mx-2 ">
-          <a href="{{facebookLink}}" class="nav-link">
-            <i class="bi bi-facebook corner-icon-facebook"></i>
-          </a>
-        </li>
-        <li class="nav-item mx-2">
-          <a href="{{twitterLink}}" class="nav-link">
-            <i class="bi bi-twitter corner-icon-twitter"> </i>
-          </a>
-        </li>
-        <li class="nav-item mx-2">
+      <!-- navbar links -->
+      <div class="collapse navbar-collapse justify-content-center align-center" id="main-nav">
+        <ul class="navbar-nav ">
+          <li class="nav-item text-center">
+            <p class="display-6">{{headerText}}</p>
+            <i class="bi bi-telephone-fill d-inline display-6 t-med">{{phoneNumber}}</i>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{{instagramLink}}" class="nav-link">
+              <i class="bi bi-instagram corner-icon-instagram"></i>
+            </a>
+          </li>
+          <li class="nav-item mx-2 ">
+            <a href="{{facebookLink}}" class="nav-link">
+              <i class="bi bi-facebook corner-icon-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{{twitterLink}}" class="nav-link">
+              <i class="bi bi-twitter corner-icon-twitter"> </i>
+            </a>
+          </li>
+          <li class="nav-item mx-2">
 
-          <button (click)="onLoginClick()" class="login-label "> Zaloguj się</button>
+            <button (click)="onLoginClick()" class="login-label "> Zaloguj się</button>
 
-        </li>
-        <li class="nav-item mx-2 d">
+          </li>
+          <li class="nav-item mx-2 d">
 
-          <button (click)="onRegistryClick()" class="registration-label ">Rejestracja</button>
+            <button (click)="onRegistryClick()" class="registration-label ">Rejestracja</button>
 
-        </li>
+          </li>
 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>

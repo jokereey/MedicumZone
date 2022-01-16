@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers
                                 ("/api/cities ",
-                                        "/api/v1/auth/login",
+                                        "/api/auth/login",
                                         "/api/users/add",
                                         "/swagger-ui/**",
                                         "/v3/api-docs",

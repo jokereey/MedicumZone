@@ -44,14 +44,14 @@ public class JWTTokenHelper {
 
 
     public String getUsernameFromToken(String token) {
-        String username;
+        String email;
         try {
             final Claims claims = this.getAllClaimsFromToken(token);
-            username = claims.getSubject();
+            email = claims.getSubject();
         } catch (Exception e) {
-            username = null;
+            email = null;
         }
-        return username;
+        return email;
     }
 
     public String generateToken(String username) throws InvalidKeySpecException, NoSuchAlgorithmException {

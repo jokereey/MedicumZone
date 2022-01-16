@@ -1,0 +1,6 @@
+{
+  "/api/*": "/$1",
+  "/covid/stats": "/stats"
+}
+
+
