@@ -1,0 +1,39 @@
+<div class="container-xxl my-5 color-white ">
+  <p class="display-5 text-center  border-top component-gap">Poznaj nasze możliwości</p>
+  <div id="carouse" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button  type="button" data-bs-target="#carouse" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Slide 1"></button>
+      <button class="bg-primary" type="button" data-bs-target="#carouse" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button class="bg-primary"type="button" data-bs-target="#carouse" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    </div>
+    <div class="carousel-inner mb-5">
+      <div class="carousel-item active" data-bs-interval="10000" >
+        <img src="assets/images/navigator/1.jpg" class="d-block w-100 img-fluid navigator-item" alt="...">
+        <div class="carousel-caption d-none d-md-block car-item border-primary rounded-3 bg-black" >
+          <h5>{{navigatorContent[0].header}}</h5>
+          <p>{{navigatorContent[0].description}}</p>
+        </div>
+      </div>
+      <div class="carousel-item " data-bs-interval="5000" *ngFor="let item of navigatorContent.slice(1)" >
+        <img src="assets/images/navigator/{{item.order}}.jpg" class="d-block w-100 img-fluid navigator-item" alt="..." (click)="click()">
+        <div class="carousel-caption d-none d-md-block car-item  border-primary rounded-3 bg-black" >
+          <h5>{{item.header}}</h5>
+          <p>{{item.description}}</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev " type="button" data-bs-target="#carouse" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-black border rounded-3 text-white" aria-hidden="true"></span>
+      <span class="visually-hidden ">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouse" data-bs-slide="next">
+      <span class="carousel-control-next-icon n bg-black border rounded-3 " aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div>

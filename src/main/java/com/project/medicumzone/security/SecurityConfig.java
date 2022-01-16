@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -49,10 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers
-                                ("/api/cities",
-                                        "/api/clinics/**",
-                                        "/api/clients",
-                                        "/api/v1/auth/login",
+                                ("/api/cities ",
+                                        "/api/auth/login",
                                         "/api/users/add",
                                         "/swagger-ui/**",
                                         "/v3/api-docs",

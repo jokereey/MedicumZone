@@ -1,0 +1,12 @@
+.login-panel{
+  padding: 50px;
+}
+.label-panel,label{
+  display: block;
+
+}
+.input-panel,input{
+
+  display: block;
+}
+

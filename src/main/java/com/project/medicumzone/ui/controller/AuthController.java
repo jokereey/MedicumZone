@@ -1,10 +1,11 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 import java.security.Principal;
 import com.project.medicumzone.config.JWTTokenHelper;
-import com.project.medicumzone.io.enitity.AppUser;
-import com.project.medicumzone.ui.model.request.AuthRequest;
-import com.project.medicumzone.ui.model.response.LoginResponse;
-import com.project.medicumzone.ui.model.response.UserInfo;
+import com.project.medicumzone.model.enitity.AppUser;
+import com.project.medicumzone.request.AuthRequest;
+import com.project.medicumzone.responses.LoginResponse;
+import com.project.medicumzone.responses.UserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +22,7 @@ import java.security.spec.InvalidKeySpecException;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
+@Slf4j
 public class AuthController {
 
     @Autowired
@@ -31,15 +33,19 @@ public class AuthController {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
     @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        log.info("request passed");
+        log.info("Username: "+request.getUsername() + " Password: " + request.getPassword());
         final Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         AppUser appUser = (AppUser) authentication.getPrincipal();
-        String jwtToken = jwtTokenHelper.generateToken(appUser.getUsername());
+        String jwtToken = jwtTokenHelper.generateToken(appUser.getEmail());
         LoginResponse response = new LoginResponse();
         response.setToken(jwtToken);
+        
         return ResponseEntity.ok(response);
     }
     @GetMapping("/auth/userinfo")
