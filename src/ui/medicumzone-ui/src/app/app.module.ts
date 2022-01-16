@@ -12,6 +12,8 @@ import {ToastsContainer} from "./components/shared/toast/toasts-container.compon
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import { PreloaderComponent } from './components/shared/preloader/preloader.component';
+import { LoginFormComponent } from './components/login/login-form/login-form.component';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { PreloaderComponent } from './components/shared/preloader/preloader.comp
     AboutUsComponent,
     FooterComponent,
     ToastsContainer,
-    PreloaderComponent
+    PreloaderComponent,
+    LoginFormComponent,
 
   ],
   imports: [
