@@ -28,7 +28,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             String username = jwtTokenHelper.getUsernameFromToken(authToken);
             if(username!=null){
                 UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
-                //TODO: change username to email
                 if(jwtTokenHelper.validateToken(authToken,userDetails)){
                     UsernamePasswordAuthenticationToken authenticationToken
                             =new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities() );

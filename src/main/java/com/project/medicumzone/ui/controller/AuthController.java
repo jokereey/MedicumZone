@@ -1,10 +1,11 @@
-package com.project.medicumzone.controller;
+package com.project.medicumzone.ui.controller;
 import java.security.Principal;
 import com.project.medicumzone.config.JWTTokenHelper;
-import com.project.medicumzone.model.enitity.AppUser;
-import com.project.medicumzone.request.AuthRequest;
-import com.project.medicumzone.responses.LoginResponse;
-import com.project.medicumzone.responses.UserInfo;
+
+import com.project.medicumzone.io.enitity.AppUser;
+import com.project.medicumzone.ui.model.request.AuthRequest;
+import com.project.medicumzone.ui.model.response.LoginResponse;
+import com.project.medicumzone.ui.model.response.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,7 @@ public class AuthController {
         userInfo.setFirstName(userObj.getName());
         userInfo.setLastName(userObj.getEmail());
         userInfo.setRoles(userObj.getAuthorities().toArray());
+        userInfo.setUserName(userObj.username());
         return ResponseEntity.ok(userInfo);
 
     }

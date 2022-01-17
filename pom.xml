@@ -109,6 +109,11 @@
             <version>2.5.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-dep</artifactId>
+            <version>1.12.6</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -17,9 +17,11 @@ import java.util.List;
 public class CityController {
 
     private final CityService cityService;
+
+
     @GetMapping
     public List<City> getCities(){
-
+        log.info("GET Request is comming");
        return cityService.getAllCities();
 
 

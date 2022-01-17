@@ -59,7 +59,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
@@ -101,5 +101,12 @@ public class AppUser implements UserDetails {
         this.email = email;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public String username(){
+        return  username;
     }
 }
