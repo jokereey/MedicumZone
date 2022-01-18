@@ -1,13 +1,15 @@
-<div class="container xxl">
+<app-header></app-header>
+<div class="container-xxl border-bottom mt-2">
+
   <app-preloader *ngIf="pending" message="{{preloaderMessage}}">
 
   </app-preloader>
 
-  <div class="text-center border-bottom text-black" *ngIf="!pending">
-    <h3 class="mb-4">Panel logowania</h3>
+  <div class=" text-black mb35 " *ngIf="!pending">
+    <h2 class="text-start text-lg-center">Panel logowania</h2>
   </div>
   <div class="row">
-    <div class="col-8 p-5 mt-5">
+    <div class="col-12 col-lg-6">
       <form (submit)="sendLoginRequest()">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
@@ -19,14 +21,14 @@
           <input #password type="password" class="form-control w-50 "  id="password">
         </div>
         <div class="my-2 fs-6 text-dark">
-          <label class="my-1 d-inline">{{forgetPasswordText}}</label>
-          <label class="d-inline ms-3">{{registerText}}</label>
+          <label class="my-1 d-block d-sm-inline">{{forgetPasswordText}}</label>
+          <label class="d-inline ms-0 ms-sm-3">{{registerText}}</label>
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Zaloguj się</button>
+        <button type="submit" class="btn btn-primary mt-2 mb-5">Zaloguj się</button>
       </form>
     </div>
-    <div class="col-4">
-    <img src="assets/images/Medicum-Zone-logos_black.png" class="img-fluid " alt="">
+    <div class="col-6 d-none d-lg-inline text-md-start">
+    <img src="assets/images/logo-login.png" class="img-fluid" alt="">
     </div>
   </div>
   <p *ngIf="loginError">
@@ -36,3 +38,4 @@
   </p>
 
 </div>
+<app-footer></app-footer>

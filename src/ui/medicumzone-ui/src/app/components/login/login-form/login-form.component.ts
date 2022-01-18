@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginRequest} from "../../../model/user/user";
 import {LoginService} from "../../../services/login/login.service";
+import {ExceptionService} from "../../../services/exception/exception.service";
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +22,7 @@ export class LoginFormComponent implements OnInit {
   @ViewChild('password',{static:false}) password:ElementRef;
 
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private exceptionService: ExceptionService) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +36,7 @@ export class LoginFormComponent implements OnInit {
         this.loginError = false;
       },
       error: err => {
-        this.manageErrorInfo(err);
+       this.errorMessage = this.exceptionService.manageErrorInfo(err);
         this.loginError = true;
       }
     })
@@ -47,13 +48,6 @@ export class LoginFormComponent implements OnInit {
       password:this.password.nativeElement.value
     }
   }
-  manageErrorInfo(err: any){
-    console.log(err.status);
-    if(err.status===404){
-      this.errorMessage = 'Niestety, nie mogliśmy znaleźć użytkownika o podanym adresie email lub wpisano niepoprawne hasło.'
-    } else{
-      this.errorMessage = 'Wystąpił błąd połączenia z serwerem. Proszę spróbować później.'
-    }
-  }
+
 
 }
