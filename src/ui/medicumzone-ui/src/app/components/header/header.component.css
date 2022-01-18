@@ -23,7 +23,7 @@
 }
 .login-label{
   position: absolute;
-  left: 20px;
+  left: 0px;
   top: 0px;
   height: 40px;
   background-color: transparent;
@@ -33,7 +33,7 @@
 }
 .registration-label{
   position: absolute;
-  left: 140px;
+  left: 90px;
   top: 0px;
   height: 40px;
   background-color: transparent;
