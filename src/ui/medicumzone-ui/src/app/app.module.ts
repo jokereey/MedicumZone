@@ -9,12 +9,13 @@ import {AboutUsComponent} from './components/about-us/about-us.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastsContainer} from "./components/shared/toast/toasts-container.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {PreloaderComponent} from './components/shared/preloader/preloader.component';
 import {LoginFormComponent} from './components/login/login-form/login-form.component';
 import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginFormComponent
+  },
+  {
+    path: 'sign-up',
+    component: RegistrationFormComponent
   },
   {
     path: 'home',
@@ -44,6 +49,7 @@ const appRoutes: Routes = [
     PreloaderComponent,
     LoginFormComponent,
     HomeComponent,
+    RegistrationFormComponent,
 
   ],
   imports: [
@@ -51,6 +57,7 @@ const appRoutes: Routes = [
     NgbModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports:[RouterModule],
