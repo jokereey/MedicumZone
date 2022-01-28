@@ -41,6 +41,7 @@ public class AppUser implements UserDetails {
     private LocalDateTime dob;
     private String phoneNumber;
     private boolean enabled;
+    private String PESEL;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id")
@@ -82,7 +83,8 @@ public class AppUser implements UserDetails {
         return this.enabled;
     }
 
-    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled) {
+    public AppUser(Long id, String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled, String PESEL) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -91,6 +93,7 @@ public class AppUser implements UserDetails {
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.enabled = enabled;
+        this.PESEL = PESEL;
     }
 
     public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber) {
