@@ -1,0 +1,10 @@
+.mw{
+  max-width:50%;
+}
+.mw2{
+  max-width: 600px;
+}
+p{
+  text-align: justify;
+  text-justify: inter-word;
+}

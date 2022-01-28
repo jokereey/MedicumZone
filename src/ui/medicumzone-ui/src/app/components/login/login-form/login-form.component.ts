@@ -28,6 +28,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   sendLoginRequest(){
+    this.loginError= false;
     this.pending = true;
     this.loginService.login(this.getCredentials()).subscribe({
       next: (res) => {
@@ -38,6 +39,7 @@ export class LoginFormComponent implements OnInit {
       error: err => {
        this.errorMessage = this.exceptionService.manageErrorInfo(err);
         this.loginError = true;
+        this.pending= false;
       }
     })
 
