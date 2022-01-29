@@ -1,5 +1,6 @@
 package com.project.medicumzone;
 
+
 import com.project.medicumzone.repository.AppUserRepository;
 import com.project.medicumzone.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,7 @@ public class MedicumZoneApplication {
         SpringApplication.run(MedicumZoneApplication.class, args);
     }
     @PostConstruct
-    protected  void init (){
-        //aa
-//        List<Authority> authorityList = new ArrayList<>();
-//        authorityList.add(new Authority("USER","User role"));
-//        authorityList.add(new Authority("ADMIN","Admin role"));
-//        AppUser appUser = new AppUser();
-//
+    protected  void init() {
 
     }
 
