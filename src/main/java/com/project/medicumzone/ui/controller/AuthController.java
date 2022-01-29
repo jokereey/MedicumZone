@@ -8,6 +8,8 @@ import com.project.medicumzone.ui.model.response.LoginResponse;
 import com.project.medicumzone.ui.model.response.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,9 +47,11 @@ public class AuthController {
         AppUser appUser = (AppUser) authentication.getPrincipal();
         String jwtToken = jwtTokenHelper.generateToken(appUser.getEmail());
         LoginResponse response = new LoginResponse();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Authorization","Bearer "+ jwtToken);
         response.setToken(jwtToken);
         
-        return ResponseEntity.ok(response);
+        return new ResponseEntity<LoginResponse>(response,responseHeaders, HttpStatus.OK);
     }
     @GetMapping("/auth/userinfo")
     public ResponseEntity<?> getUserInfo(Principal user){
