@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-preloader *ngIf="pending">
+
+</app-preloader>
+<div class="container" [formGroup]="formGroup" *ngIf="!pending">
+
+  <div class="d-flex mw-100 ">
+    <div class="flex-column mw border-5 flex-wrap me-5">
+      <h3>Załóż konto i zostań pacjentem <span class="fw-bold">Medicum-Zone!</span></h3>
+      <p class="">Zakłądając konto w naszym serwisie, zdobędziesz wiele benefitów. Skorzystaj z usług wielu specjalistów
+        w całej Polsce.</p>
+      <h5 class="fw-bold">dlaczego warto założyć konto?</h5>
+      <p class="mw2">Każdy zarejestrowany użytkownik może zapisać się na wizytę do <span>każdej</span> przychodni w
+        całej Polsce, bez wcześniejszej rejestracji. W naszej przychodni pracuje blisko NUMBER wykalifikowanych
+        specjalistów w każdej dziedzinie. Nie pozwól, aby twoje zdrowie było zaniedbane. Umów się na wiztyę już dziś -
+        zapomocą aplikacji lub telefonicznie!</p>
+      <img width="300" height="400" class="img-fluid" src="assets/images/Medicum-Zone-logos.jpeg" alt="">
+    </div>
+    <div class="flex-column w-75">
+      <div class="flex-row ">
+        <label>Imię</label>
+        <input formControlName="name" type="text" class="form-control">
+      </div>
+      <div class="flex-row justify-content-between">
+        <label>Nazwisko</label>
+        <input formControlName="surname" type="text" class="form-control w-100">
+      </div>
+      <div class="flex-row ">
+        <label>PESEL</label>
+        <input formControlName="PESEL" type="text" class="form-control">
+      </div>
+      <div class="flex-row ">
+        <label>Data urodzenia</label>
+        <input formControlName="dob" type="date" class="form-control">
+      </div>
+      <div class="flex-row ">
+        <label>Numer telefonu</label>
+        <input formControlName="phoneNumber" type="text" class="form-control">
+      </div>
+      <div class="flex-row ">
+        <label>Adres email</label>
+        <input formControlName="email" type="email" class="form-control">
+      </div>
+      <div formGroupName="passwords" class="">
+        <div class="flex-row ">
+          <label>Hasło</label>
+          <input formControlName="password" type="password" class="form-control">
+        </div>
+        <div class="flex-row ">
+          <label>Potwierdź hasło</label>
+          <input formControlName="confirmPassword" type="password" class="form-control">
+        </div>
+      </div>
+      <div class="flex-row mt-2">
+        <input formControlName="privacy" type="checkbox" class="me-2">
+        <label>Zapoznałem się z polityką prywatnośći*</label>
+      </div>
+      <div class="flex-row mt-2">
+        <input formControlName="newsletter" type="checkbox" class="me-2">
+        <label>Chcę otrzymywać maile związane z aktualnościami Medicum-Zone</label>
+      </div>
+      <div class="flex-row d-flex justify-content-center  mt-2">
+        <button  [disabled]="!formGroup.valid" type="button" (click)="onSubmit()" class="btn btn-lg btn-primary align-self-stretch">Zarejestruj się</button>
+      </div>
+    </div>
+
+  </div>
+  <p *ngIf="singUpError" class="mt-2">
+    <ngb-alert type="danger" [dismissible]="false">
+      {{errorMessage}}
+    </ngb-alert>
+  </p>
+  <p *ngIf="success" class="mt-2">
+    <ngb-alert type="success" [dismissible]="false">
+      Twoje konto zostało zarejestrowane. <a routerLink="/login">Kliknij tutaj, aby się zalogować.</a>
+    </ngb-alert>
+  </p>
+
+</div>

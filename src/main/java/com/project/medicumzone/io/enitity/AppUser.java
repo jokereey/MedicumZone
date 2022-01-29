@@ -1,5 +1,6 @@
 package com.project.medicumzone.io.enitity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,13 +36,14 @@ public class AppUser implements UserDetails {
     private String name;
     private String surname;
     private String username;
-    @Min(value = 8)
     private String password;
     @Email
     private String email;
-    private LocalDateTime dob;
+    @JsonFormat(pattern= "yyyy-MM-dd")
+    private Date dob;
     private String phoneNumber;
     private boolean enabled;
+    private String PESEL;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id")
@@ -82,7 +85,8 @@ public class AppUser implements UserDetails {
         return this.enabled;
     }
 
-    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled) {
+    public AppUser(Long id, String name, String surname, String username, String password, String email, Date dob, String phoneNumber, boolean enabled, String PESEL) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -91,9 +95,10 @@ public class AppUser implements UserDetails {
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.enabled = enabled;
+        this.PESEL = PESEL;
     }
 
-    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber) {
+    public AppUser(String name, String surname, String username, String password, String email, Date dob, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.username = username;
