@@ -8,6 +8,9 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
+import {SignUpService} from "../../services/signup/sign-up.service";
+import {ExceptionService} from "../../services/exception/exception.service";
+import {SignUpRequest} from "../../model/user/user";
 
 @Component({
   selector: 'app-registration-form',
@@ -18,12 +21,17 @@ export class RegistrationFormComponent implements OnInit {
 
   formGroup: FormGroup;
   @ViewChild('passwordConfirm') passwordConfirm: ElementRef;
+  singUpError= false;
+  pending = false;
+  errorMessage = '';
+  success = false;
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,
+              private signupService: SignUpService,
+              private exceptionService: ExceptionService) { }
 
   ngOnInit(): void {
     this.initForm();
-
   }
   initForm(){
     this.formGroup = this.formBuilder.group({
@@ -65,7 +73,7 @@ export class RegistrationFormComponent implements OnInit {
        confirmPassword: ['',[Validators.required]]
      }, { validators: this.checkPasswords.bind(this)}),
 
-      newsletter:this.formBuilder.control('',{
+      newsletter:this.formBuilder.control('false',{
       }),
       privacy:this.formBuilder.control('',{
         validators: Validators.requiredTrue
@@ -77,6 +85,9 @@ export class RegistrationFormComponent implements OnInit {
     console.log(this.formGroup);
   }
   isAdult(control: FormControl): {[s:string]: boolean} | null{
+    if(control.value ===null ){
+      return {noDOB: true}
+    }
    let year = control.value.substring(0,4);
    let month = control.value.substring(5,7);
    let day = control.value.substring(8,10);
@@ -102,6 +113,53 @@ export class RegistrationFormComponent implements OnInit {
     let pass = group.get('password')!.value;
     let confirmPass = group.get('confirmPassword')!.value
     return pass === confirmPass ? null : { notSame: true }
+  }
+
+  onSubmit(){
+    this.pending = true;
+    console.log('Sending request...');
+    const request =this.createRequestBody(this.formGroup);
+    this.signupService.signUp(request).subscribe({
+      next: (res) => {
+
+        console.log(res);
+        console.log('Setting success flag TRUE');
+        this.success = true;
+        console.log(this.success);
+        this.singUpError = false;
+        this.pending = false;
+      },
+      error: err => {
+        this.success = false;
+        this.errorMessage = this.exceptionService.manageErrorInfo(err);
+        this.singUpError = true;
+        this.pending = false;
+      },
+      complete: () => {
+        this.formGroup.get('passwords')!.reset();
+        this.formGroup.reset();
+        this.pending = false;
+        console.log('Complete:');
+        console.log(this.success);
+      }
+    });
+    console.log('After Request.')
+  }
+  createRequestBody(form: FormGroup): SignUpRequest{
+    let newsletter = form.get('newsletter')?.value;
+    if(newsletter ===''){
+      newsletter = 'false';
+    }
+    return {
+      name:form.get('name')?.value,
+      surname:form.get('surname')?.value,
+      PESEL:form.get('PESEL')?.value,
+      phoneNumber:form.get('phoneNumber')?.value,
+      email:form.get('email')?.value,
+      dob: form.get('dob')?.value,
+      password: form.get('passwords.password')?.value,
+      newsletter:newsletter,
+    }
   }
 
 
