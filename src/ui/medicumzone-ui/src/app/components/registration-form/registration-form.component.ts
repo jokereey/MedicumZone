@@ -8,9 +8,8 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {SignUpService} from "../../services/signup/sign-up.service";
-import {ExceptionService} from "../../services/exception/exception.service";
 import {SignUpRequest} from "../../model/user/user";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-registration-form',
@@ -27,8 +26,7 @@ export class RegistrationFormComponent implements OnInit {
   success = false;
 
   constructor(private formBuilder:FormBuilder,
-              private signupService: SignUpService,
-              private exceptionService: ExceptionService) { }
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -119,9 +117,8 @@ export class RegistrationFormComponent implements OnInit {
     this.pending = true;
     console.log('Sending request...');
     const request =this.createRequestBody(this.formGroup);
-    this.signupService.signUp(request).subscribe({
+    this.authService.signup(request).subscribe({
       next: (res) => {
-
         console.log(res);
         console.log('Setting success flag TRUE');
         this.success = true;
@@ -131,16 +128,14 @@ export class RegistrationFormComponent implements OnInit {
       },
       error: err => {
         this.success = false;
-        this.errorMessage = this.exceptionService.manageErrorInfo(err);
         this.singUpError = true;
         this.pending = false;
+        this.errorMessage = err;
       },
       complete: () => {
         this.formGroup.get('passwords')!.reset();
         this.formGroup.reset();
         this.pending = false;
-        console.log('Complete:');
-        console.log(this.success);
       }
     });
     console.log('After Request.')
