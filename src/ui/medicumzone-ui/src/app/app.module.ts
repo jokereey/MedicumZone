@@ -10,12 +10,13 @@ import {FooterComponent} from './components/footer/footer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastsContainer} from "./components/shared/toast/toasts-container.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {PreloaderComponent} from './components/shared/preloader/preloader.component';
 import {LoginFormComponent} from './components/login/login-form/login-form.component';
 import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import {AuthInterceptorService} from "./interceptor/auth-interceptor.service";
 
 const appRoutes: Routes = [
   {
@@ -61,7 +62,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports:[RouterModule],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

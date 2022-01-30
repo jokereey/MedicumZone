@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {LoginRequest} from "../../../model/user/user";
-import {LoginService} from "../../../services/login/login.service";
-import {ExceptionService} from "../../../services/exception/exception.service";
+import {AuthService} from "../../../services/auth/auth.service";
+import {AuthResponseData} from "../../../model/response/AuthResponseData";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-login-form',
@@ -17,12 +17,13 @@ export class LoginFormComponent implements OnInit {
   loginError =false;
   pending = false;
   redirect = '';
+  authObs: Observable<AuthResponseData>;
 
   @ViewChild('email',{static:false}) email:ElementRef;
   @ViewChild('password',{static:false}) password:ElementRef;
 
 
-  constructor(private loginService: LoginService, private exceptionService: ExceptionService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -30,14 +31,14 @@ export class LoginFormComponent implements OnInit {
   sendLoginRequest(){
     this.loginError= false;
     this.pending = true;
-    this.loginService.login(this.getCredentials()).subscribe({
+    this.authObs =this.authService.login(this.getCredentials());
+    this.authObs.subscribe({
       next: (res) => {
-        console.log(res.token);
         this.pending = false
         this.loginError = false;
       },
       error: err => {
-       this.errorMessage = this.exceptionService.manageErrorInfo(err);
+        this.errorMessage =err;
         this.loginError = true;
         this.pending= false;
       }

@@ -50,6 +50,9 @@ public class AuthController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Authorization","Bearer "+ jwtToken);
         response.setToken(jwtToken);
+        response.setId(appUser.getId());
+        response.setName(appUser.getName());
+        response.setExpiresIn("3600");
         
         return new ResponseEntity<LoginResponse>(response,responseHeaders, HttpStatus.OK);
     }
