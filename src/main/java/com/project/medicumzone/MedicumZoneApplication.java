@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @SpringBootApplication
 public class MedicumZoneApplication {
@@ -25,7 +26,6 @@ public class MedicumZoneApplication {
     }
     @PostConstruct
     protected  void init() {
-
     }
 
 }
