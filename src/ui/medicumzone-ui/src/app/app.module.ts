@@ -16,6 +16,9 @@ import {LoginFormComponent} from './components/login/login-form/login-form.compo
 import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { UserHeaderComponent } from './components/user/user-header/user-header.component';
+import {UserModule} from "./components/user/user.module";
+import { UserMainPanelComponent } from './components/user/user-main-panel/user-main-panel.component';
 
 const appRoutes: Routes = [
   {
@@ -50,7 +53,6 @@ const appRoutes: Routes = [
     LoginFormComponent,
     HomeComponent,
     RegistrationFormComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -58,9 +60,10 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    UserModule
   ],
-  exports:[RouterModule],
+  exports: [RouterModule, FooterComponent],
   providers: [HttpClient],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
