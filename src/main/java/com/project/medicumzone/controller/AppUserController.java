@@ -28,9 +28,7 @@ public class AppUserController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addNewUser(@RequestBody @Valid AppUserSignUpRequest request){
-        log.info("Incoming request with main credentials: ");
-        log.warn("email:" +request.getEmail());
-        log.warn("surname:" +request.getSurname());
+        log.info("Incoming request with main credentials: " + request);
         appUserService.addNewUser(request);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

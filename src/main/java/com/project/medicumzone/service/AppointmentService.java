@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AppointmentService {
 
-    @Autowired
+
     private final AppointmentRepository appointmentRepository;
 
     public void addNewAppointment(AppointmentRequest appointmentRequest){
         //TODO: NEW APPOINTMENT IMPLEMENTATION
-
     }
 }

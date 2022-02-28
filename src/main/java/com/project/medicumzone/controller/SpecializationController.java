@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/specializations")
 public class SpecializationController {
 
-    @Autowired
     private SpecializationService specializationService;
 
 }

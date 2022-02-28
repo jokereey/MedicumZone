@@ -15,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 public class ClientService implements IClientService {
-    @Autowired
+
     private final ClientRepository clientRepository;
 
     @Override

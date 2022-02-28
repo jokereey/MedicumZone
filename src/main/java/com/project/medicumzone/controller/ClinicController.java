@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/api/clinics")
 public class ClinicController {
 
-    @Autowired
     private final ClinicService clinicService;
 
     @GetMapping
@@ -28,5 +27,10 @@ public class ClinicController {
     @PostMapping("/add")
     public void addNewClinic(@Valid @RequestBody NewClinicRequestModel clinicToAdd){
         clinicService.addNewClinic(clinicToAdd);
+    }
+
+    @GetMapping("/count")
+    public Long count(){
+        return clinicService.getNumberOfClinics();
     }
 }

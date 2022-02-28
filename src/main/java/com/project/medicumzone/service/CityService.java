@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CityService {
 
-    @Autowired
     private final CityRepository cityRepository;
 
     public List<City> getAllCities(){

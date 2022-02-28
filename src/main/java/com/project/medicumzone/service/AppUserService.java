@@ -19,22 +19,19 @@ import java.util.List;
 @Slf4j
 public class AppUserService {
 
-    @Autowired
     private final AppUserRepository appUserRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<AppUser> getAllUsers(){
+    public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();
     }
 
     public void addNewUser(AppUserSignUpRequest request) {
-        if(appUserRepository.existsByEmail(request.getEmail())){
+        if (appUserRepository.existsByEmail(request.getEmail())) {
             throw new ApiRequestException("This user already exists.");
-        }else{
-            List<Authority> authorityList=new ArrayList<>();
-            authorityList.add(createAuthority("USER","User role"));
+        } else {
+            List<Authority> authorityList = new ArrayList<>();
+            authorityList.add(createAuthority("USER", "User role"));
             String encodedPassword = passwordEncoder.encode(request.getPassword());
             AppUser newUser = new AppUser(
                     request.getName(),
@@ -51,8 +48,9 @@ public class AppUserService {
             log.info("New user has been added.");
         }
     }
-    private Authority createAuthority(String roleCode,String roleDescription) {
-        Authority authority=new Authority();
+
+    private Authority createAuthority(String roleCode, String roleDescription) {
+        Authority authority = new Authority();
         authority.setRoleCode(roleCode);
         authority.setRoleDescription(roleDescription);
         return authority;

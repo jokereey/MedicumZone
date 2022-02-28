@@ -17,17 +17,14 @@ import java.util.List;
 @AllArgsConstructor
 public class ClinicService implements IClinicService {
 
-    @Autowired
     private final ClinicRepository clinicRepository;
 
-    @Override
+
     public List<Clinic> getAllClinics() {
         return clinicRepository.findAll();
     }
 
-    @Override
     public void addNewClinic(NewClinicRequestModel clinicToAdd) {
-
         String clinicName = clinicToAdd.getClinicName();
         if (clinicRepository.findClinicByClinicNameEquals(clinicName).isPresent())
             return;
@@ -36,5 +33,9 @@ public class ClinicService implements IClinicService {
             clinicRepository.save(newClinic);
             log.info("New clinic has been added.");
         }
+    }
+
+    public Long getNumberOfClinics(){
+        return clinicRepository.count();
     }
 }
