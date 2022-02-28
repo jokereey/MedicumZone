@@ -1,4 +1,4 @@
-package com.project.medicumzone.ui.model.request;
+package com.project.medicumzone.io.request;
 
 import lombok.Getter;
 import lombok.Setter;

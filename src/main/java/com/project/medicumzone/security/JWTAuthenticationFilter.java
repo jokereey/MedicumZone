@@ -1,4 +1,4 @@
-package com.project.medicumzone.config;
+package com.project.medicumzone.security;
 
 import com.project.medicumzone.security.service.MyUserDetailsService;
 import lombok.AllArgsConstructor;

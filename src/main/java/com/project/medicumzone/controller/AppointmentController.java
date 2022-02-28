@@ -1,6 +1,6 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 
-import com.project.medicumzone.ui.model.request.AppointmentRequest;
+import com.project.medicumzone.io.request.AppointmentRequest;
 import com.project.medicumzone.service.AppointmentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

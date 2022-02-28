@@ -1,8 +1,7 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 
-import com.project.medicumzone.io.enitity.Client;
 import com.project.medicumzone.service.ClientService;
-import com.project.medicumzone.ui.model.request.NewClientRequestModel;
+import com.project.medicumzone.io.request.NewClientRequestModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

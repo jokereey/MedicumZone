@@ -1,19 +1,16 @@
 package com.project.medicumzone.service;
 
 import com.project.medicumzone.io.enitity.City;
-import com.project.medicumzone.io.enitity.Client;
 import com.project.medicumzone.io.enitity.Clinic;
-import com.project.medicumzone.repository.CityRepository;
 import com.project.medicumzone.repository.ClinicRepository;
 import com.project.medicumzone.service.interfaces.IClinicService;
-import com.project.medicumzone.ui.model.request.NewClinicRequestModel;
+import com.project.medicumzone.io.request.NewClinicRequestModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j

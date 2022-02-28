@@ -1,6 +1,5 @@
-package com.project.medicumzone.ui.model.response;
+package com.project.medicumzone.io.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

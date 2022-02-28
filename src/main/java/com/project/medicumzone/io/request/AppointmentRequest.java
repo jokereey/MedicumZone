@@ -1,7 +1,6 @@
-package com.project.medicumzone.ui.model.request;
+package com.project.medicumzone.io.request;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AppointmentRequest implements Serializable {

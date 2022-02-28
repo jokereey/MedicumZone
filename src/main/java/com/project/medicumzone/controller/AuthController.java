@@ -1,11 +1,11 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 import java.security.Principal;
-import com.project.medicumzone.config.JWTTokenHelper;
+import com.project.medicumzone.security.JWTTokenHelper;
 
 import com.project.medicumzone.io.enitity.AppUser;
-import com.project.medicumzone.ui.model.request.AuthRequest;
-import com.project.medicumzone.ui.model.response.LoginResponse;
-import com.project.medicumzone.ui.model.response.UserInfo;
+import com.project.medicumzone.io.request.AuthRequest;
+import com.project.medicumzone.io.response.LoginResponse;
+import com.project.medicumzone.io.response.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

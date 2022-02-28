@@ -1,10 +1,9 @@
-package com.project.medicumzone.ui.model.request;
+package com.project.medicumzone.io.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;

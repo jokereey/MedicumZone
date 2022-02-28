@@ -1,11 +1,8 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 
-import com.project.medicumzone.io.enitity.AppUser;
 import com.project.medicumzone.service.AppUserService;
-import com.project.medicumzone.ui.model.request.AppUserSignUpRequest;
-import com.project.medicumzone.ui.model.response.SignUpResponse;
+import com.project.medicumzone.io.request.AppUserSignUpRequest;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 @Controller
 @AllArgsConstructor

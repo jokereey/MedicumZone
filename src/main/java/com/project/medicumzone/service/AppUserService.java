@@ -4,7 +4,7 @@ import com.project.medicumzone.exception.ApiRequestException;
 import com.project.medicumzone.io.enitity.AppUser;
 import com.project.medicumzone.io.enitity.Authority;
 import com.project.medicumzone.repository.AppUserRepository;
-import com.project.medicumzone.ui.model.request.AppUserSignUpRequest;
+import com.project.medicumzone.io.request.AppUserSignUpRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

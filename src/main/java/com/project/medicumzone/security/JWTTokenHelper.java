@@ -1,4 +1,4 @@
-package com.project.medicumzone.config;
+package com.project.medicumzone.security;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

@@ -1,4 +1,4 @@
-package com.project.medicumzone.ui.controller;
+package com.project.medicumzone.controller;
 
 import com.project.medicumzone.io.enitity.City;
 import com.project.medicumzone.service.CityService;

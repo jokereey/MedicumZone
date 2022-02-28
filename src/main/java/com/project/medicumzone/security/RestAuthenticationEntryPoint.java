@@ -1,4 +1,4 @@
-package com.project.medicumzone.config;
+package com.project.medicumzone.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
