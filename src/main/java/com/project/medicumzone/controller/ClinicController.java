@@ -6,6 +6,8 @@ import com.project.medicumzone.io.request.NewClinicRequestModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +26,8 @@ public class ClinicController {
         return clinicService.getAllClinics();
     }
 
-    @PostMapping("/add")
+    @Secured("ROLE_ADMIN")
+    @PostMapping()
     public void addNewClinic(@Valid @RequestBody NewClinicRequestModel clinicToAdd){
         clinicService.addNewClinic(clinicToAdd);
     }

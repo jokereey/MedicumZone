@@ -11,7 +11,10 @@ import javax.validation.constraints.NotBlank;
 public class NewClinicRequestModel {
     @NotBlank
     private String clinicName;
+    @NotBlank
     private String streetName;
+    @NotBlank
     private String zipCode;
+    @NotBlank
     private String city;
 }
