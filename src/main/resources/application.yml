@@ -1,0 +1,33 @@
+jwt:
+    auth:
+        app: Medicum-Zone
+        expires_in: 3600000
+        secret_key: testkey#secret@12334@com.project.medicumzone90
+server:
+    error:
+        include-binding-errors: always
+        include-message: always
+        include-stacktrace: never
+    port: 8080
+spring:
+    application:
+        name: Medicum-Zone
+    cloud:
+        vault:
+            token: vault-plaintext-root-token
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        password: password
+        url: jdbc:postgresql://localhost:5433/medicumzone-db
+        username: medicum-zone
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+twilio:
+    sender:
+        enabled: false
