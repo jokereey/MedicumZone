@@ -17,6 +17,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import {AuthInterceptorService} from "./interceptor/auth-interceptor.service";
+import {UserModule} from "./components/user/user.module";
 
 const appRoutes: Routes = [
   {
@@ -50,8 +51,7 @@ const appRoutes: Routes = [
     PreloaderComponent,
     LoginFormComponent,
     HomeComponent,
-    RegistrationFormComponent,
-
+    RegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +59,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    UserModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports:[RouterModule],
