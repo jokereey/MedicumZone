@@ -4,7 +4,7 @@ import com.project.medicumzone.exception.ApiRequestException;
 import com.project.medicumzone.io.enitity.AppUser;
 import com.project.medicumzone.io.enitity.Authority;
 import com.project.medicumzone.repository.AppUserRepository;
-import com.project.medicumzone.ui.model.request.AppUserSignUpRequest;
+import com.project.medicumzone.io.request.AppUserSignUpRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +19,19 @@ import java.util.List;
 @Slf4j
 public class AppUserService {
 
-    @Autowired
     private final AppUserRepository appUserRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<AppUser> getAllUsers(){
+    public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();
     }
 
     public void addNewUser(AppUserSignUpRequest request) {
-        if(appUserRepository.existsByEmail(request.getEmail())){
+        if (appUserRepository.existsByEmail(request.getEmail())) {
             throw new ApiRequestException("This user already exists.");
-        }else{
-            List<Authority> authorityList=new ArrayList<>();
-            authorityList.add(createAuthority("USER","User role"));
+        } else {
+            List<Authority> authorityList = new ArrayList<>();
+            authorityList.add(createAuthority("USER", "User role"));
             String encodedPassword = passwordEncoder.encode(request.getPassword());
             AppUser newUser = new AppUser(
                     request.getName(),
@@ -51,8 +48,9 @@ public class AppUserService {
             log.info("New user has been added.");
         }
     }
-    private Authority createAuthority(String roleCode,String roleDescription) {
-        Authority authority=new Authority();
+
+    private Authority createAuthority(String roleCode, String roleDescription) {
+        Authority authority = new Authority();
         authority.setRoleCode(roleCode);
         authority.setRoleDescription(roleDescription);
         return authority;

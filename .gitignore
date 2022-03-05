@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /src/UI/node_modules/
+!/src/main/resources/secrets.properties

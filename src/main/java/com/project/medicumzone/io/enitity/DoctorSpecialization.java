@@ -33,8 +33,4 @@ public class DoctorSpecialization {
     @OneToMany(mappedBy = "doctorSpecialization",cascade = {CascadeType.PERSIST},fetch = FetchType.LAZY)
     private List<Specialization> specializations = new ArrayList<>();
 
-    public DoctorSpecialization(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

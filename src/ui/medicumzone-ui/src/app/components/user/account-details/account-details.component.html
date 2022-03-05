@@ -1,0 +1,22 @@
+<app-user-header></app-user-header>
+<h6 class="display-6 text-center  mt-5 mb-2"> Edytuj dane konta pacjenta</h6>
+<div class="display-flex">
+  <div class="flex-column d-flex ">
+    <div class="flex-row d-flex ">
+      <label>Ze względu na istotnośc niektórych dancyh, nie jest możliwe, aby je edytować. W celu edycji najbardziej unikalnych
+      danych, prosimy o wykonanie połączenia bezpośrednio do jednej z naszych przychodni. Wybierz dane, które chcesz edytować:</label>
+    </div>
+    <div class="flex-row d-flex justify-content-center mt-4">
+      <button routerLink="password" class="btn btn-primary border rounded-pill mx-2">Hasło</button>
+      <button class="btn btn-primary rounded-pill mx-2">Adres zamieszkanie</button>
+      <button class="btn btn-primary rounded-pill mx-2">Numer telefonu</button>
+      <button class="btn btn-primary rounded-pill mx-2">Adres email</button>
+    </div>
+    <div class="flex-row d-flex">
+    <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+</div>
+
