@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(
-        locations = "classpath:application.yml"
+        properties = "application-it.properties"
 )
 class TwilioSmsSenderTest {
 

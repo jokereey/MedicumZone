@@ -1,9 +1,7 @@
 package com.project.medicumzone.io.enitity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +18,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Builder
 public class AppUser implements UserDetails {
     @Id
     @SequenceGenerator(
@@ -40,7 +39,7 @@ public class AppUser implements UserDetails {
     @Email
     private String email;
     @JsonFormat(pattern= "yyyy-MM-dd")
-    private Date dob;
+    private LocalDateTime dob;
     private String phoneNumber;
     private boolean enabled;
     private String PESEL;
@@ -85,7 +84,7 @@ public class AppUser implements UserDetails {
         return this.enabled;
     }
 
-    public AppUser(Long id, String name, String surname, String username, String password, String email, Date dob, String phoneNumber, boolean enabled, String PESEL) {
+    public AppUser(Long id, String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled, String PESEL) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -98,7 +97,7 @@ public class AppUser implements UserDetails {
         this.PESEL = PESEL;
     }
 
-    public AppUser(String name, String surname, String username, String password, String email, Date dob, String phoneNumber) {
+    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.username = username;

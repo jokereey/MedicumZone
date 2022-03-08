@@ -1,10 +1,14 @@
 package com.project.medicumzone.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.vault.annotation.VaultPropertySource;
 
 @Configuration
+@Setter
+@Getter
 @VaultPropertySource(value = "secret/application",
         renewal = VaultPropertySource.Renewal.RENEW)
 public class TwilioConfig {
@@ -20,23 +24,6 @@ public class TwilioConfig {
 
     @Value("${twilio_auth_token}")
     private String authToken;
-
-
-    public String getAccountSid() {
-        return accountSid;
-    }
-
-    public String getTwilioAvailableNumber() {
-        return twilioAvailableNumber;
-    }
-
-    public String getMyTwilioNumber() {
-        return myTwilioNumber;
-    }
-
-    public String getAuthToken() {
-        return authToken;
-    }
 
     public TwilioConfig() {
     }
