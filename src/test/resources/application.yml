@@ -16,18 +16,13 @@ spring:
         vault:
             token: vault-plaintext-root-token
     datasource:
-        driver-class-name: org.postgresql.Driver
+        url: jdbc:h2:mem:mydb
+        username: sa
         password: password
-        url: jdbc:postgresql://localhost:5433/medicumzone-db
-        username: medicum-zone
+        driverClassName: org.h2.Driver
     jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.PostgreSQLDialect
-                format_sql: true
-        show-sql: true
+        database-platform: org.hibernate.dialect.H2Dialect
+
 twilio:
     sender:
         enabled: true
