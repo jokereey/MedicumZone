@@ -7,6 +7,8 @@ The application is being developed for learning purposes.
 ## Stack
 - Spring Boot 2.5.5
 - Angular 13
+- Vault Secrects
+- Docker
 
 ## Features
 ### Current:

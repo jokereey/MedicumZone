@@ -28,5 +28,5 @@ public class Appointment {
     @JoinColumn(name = "clinic_id", nullable = false,foreignKey = @ForeignKey(name="appointment_clinic_id_fk"))
     private Clinic clinic;
 
-    private LocalDateTime dateTime;
+    private LocalDateTime appointmentDate;
 }

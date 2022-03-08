@@ -1,15 +1,16 @@
 package com.project.medicumzone.io.enitity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
@@ -20,7 +21,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Builder
 public class AppUser implements UserDetails {
     @Id
     @SequenceGenerator(
@@ -33,16 +35,26 @@ public class AppUser implements UserDetails {
             strategy = GenerationType.SEQUENCE
     )
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String surname;
+    @NotBlank
     private String username;
+    @Length(min = 8)
+    @NotBlank
     private String password;
     @Email
+    @NotBlank
     private String email;
+    @NotBlank
     @JsonFormat(pattern= "yyyy-MM-dd")
-    private Date dob;
+    private LocalDateTime dob;
+    @NotBlank
     private String phoneNumber;
+    @NotNull
     private boolean enabled;
+    @NotBlank
     private String PESEL;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -85,7 +97,7 @@ public class AppUser implements UserDetails {
         return this.enabled;
     }
 
-    public AppUser(Long id, String name, String surname, String username, String password, String email, Date dob, String phoneNumber, boolean enabled, String PESEL) {
+    public AppUser(Long id, String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber, boolean enabled, String PESEL) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -98,7 +110,7 @@ public class AppUser implements UserDetails {
         this.PESEL = PESEL;
     }
 
-    public AppUser(String name, String surname, String username, String password, String email, Date dob, String phoneNumber) {
+    public AppUser(String name, String surname, String username, String password, String email, LocalDateTime dob, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.username = username;

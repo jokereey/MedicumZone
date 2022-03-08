@@ -37,6 +37,7 @@ services:
     environment:
       VAULT_ADDR: "http://0.0.0.0:8200"
       VAULT_DEV_ROOT_TOKEN_ID: "vault-plaintext-root-token"
+      VAULT_LOCAL_CONFIG: ""
     cap_add:
       - IPC_LOCK
     networks:

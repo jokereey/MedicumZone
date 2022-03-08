@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -25,7 +26,7 @@ public class AppUserSignUpRequest {
 
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date dob;
+    private LocalDateTime dob;
 
     @NotNull
     private String phoneNumber;

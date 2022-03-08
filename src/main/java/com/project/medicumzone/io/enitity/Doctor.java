@@ -1,10 +1,13 @@
 package com.project.medicumzone.io.enitity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +16,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Doctor {
+@Builder
+@AllArgsConstructor
+public class Doctor implements Serializable {
 
     @Id
     @SequenceGenerator(
@@ -33,11 +38,16 @@ public class Doctor {
     private List<Specialization> specializations = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+
     @JoinColumn(name="clinic_id",nullable = false,referencedColumnName = "clinicId",foreignKey =@ForeignKey(name="clinic_fk"))
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "doctor",cascade = {CascadeType.PERSIST,CascadeType.REMOVE},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "doctor",cascade = {CascadeType.DETACH,CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Appointment> appointments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "doctor")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<DoctorRatio> ratios = new ArrayList<>();
 
     public Doctor(String name, String surname, Clinic clinic) {
         this.name = name;
@@ -55,4 +65,5 @@ public class Doctor {
         this.surname = surname;
         this.specializations = specializations;
     }
+
 }
