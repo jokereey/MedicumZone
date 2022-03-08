@@ -47,7 +47,7 @@ public class AppUser implements UserDetails {
     @Email
     @NotBlank
     private String email;
-    @NotBlank
+    @NotNull
     @JsonFormat(pattern= "yyyy-MM-dd")
     private LocalDateTime dob;
     @NotBlank
