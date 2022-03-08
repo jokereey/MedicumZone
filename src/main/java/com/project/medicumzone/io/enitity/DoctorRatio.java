@@ -31,7 +31,7 @@ public class DoctorRatio implements Serializable {
     private Long ratioId;
 
     @NotNull
-    private Long ratioValue;
+    private double ratioValue;
 
     @NotNull
     private String comment;

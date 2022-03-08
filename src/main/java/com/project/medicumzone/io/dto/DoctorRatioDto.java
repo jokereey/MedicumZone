@@ -12,6 +12,6 @@ public class DoctorRatioDto {
     private Long doctorId;
     private String username;
     private String comment;
-    private Long ratioValue;
+    private double ratioValue;
 
 }

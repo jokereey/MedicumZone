@@ -48,7 +48,7 @@ public class DoctorRatioService {
         }
 
     }
-    private boolean alreadyRated(Doctor doctor, AppUser user){
+    protected boolean alreadyRated(Doctor doctor, AppUser user){
         AtomicBoolean alreadyRated = new AtomicBoolean(false);
         doctor.getRatios().forEach(doctorRatio -> {
             if(doctorRatio.getRatedBy().equals( user.getId())){
