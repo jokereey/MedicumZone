@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/webjars/**",
                                         "/swagger-resources/**",
                                         "/api/clinic/doctor",
-                                        "/api/doctors"
+                                        "/api/doctors",
+                                        "/api/doctor-ratio"
                                 )
                         .permitAll()
                         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll().anyRequest().authenticated())
