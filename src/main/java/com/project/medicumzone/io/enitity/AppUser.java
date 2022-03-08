@@ -2,12 +2,15 @@ package com.project.medicumzone.io.enitity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
@@ -32,16 +35,26 @@ public class AppUser implements UserDetails {
             strategy = GenerationType.SEQUENCE
     )
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String surname;
+    @NotBlank
     private String username;
+    @Length(min = 8)
+    @NotBlank
     private String password;
     @Email
+    @NotBlank
     private String email;
+    @NotBlank
     @JsonFormat(pattern= "yyyy-MM-dd")
     private LocalDateTime dob;
+    @NotBlank
     private String phoneNumber;
+    @NotNull
     private boolean enabled;
+    @NotBlank
     private String PESEL;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
