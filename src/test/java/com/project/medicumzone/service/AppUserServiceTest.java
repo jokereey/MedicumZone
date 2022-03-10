@@ -1,21 +1,25 @@
 package com.project.medicumzone.service;
 
+import com.project.medicumzone.mapper.AppUserMapper;
 import com.project.medicumzone.repository.AppUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@ExtendWith(MockitoExtension.class)
 class AppUserServiceTest {
 
     private AppUserService underTest;
-    private PasswordEncoder passwordEncoder;
+    @Mock
     private AppUserRepository appUserRepository;
+    @Mock
+    private AppUserMapper mapper;
 
     @BeforeEach
     void setUp() {
-        underTest =  new AppUserService(appUserRepository, passwordEncoder);
+        underTest = new AppUserService(appUserRepository, mapper);
     }
 
     @Test

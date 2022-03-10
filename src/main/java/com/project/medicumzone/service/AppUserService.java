@@ -3,6 +3,7 @@ package com.project.medicumzone.service;
 import com.project.medicumzone.exception.ApiRequestException;
 import com.project.medicumzone.io.enitity.AppUser;
 import com.project.medicumzone.io.enitity.Authority;
+import com.project.medicumzone.mapper.AppUserMapper;
 import com.project.medicumzone.repository.AppUserRepository;
 import com.project.medicumzone.io.request.AppUserSignUpRequest;
 import lombok.AllArgsConstructor;
@@ -20,32 +21,28 @@ import java.util.List;
 public class AppUserService {
 
     private final AppUserRepository appUserRepository;
-    private PasswordEncoder passwordEncoder;
+    private final AppUserMapper mapper;
+
 
     public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();
     }
 
     public void addNewUser(AppUserSignUpRequest request) {
-        if (appUserRepository.existsByEmail(request.getEmail())) {
-            throw new ApiRequestException("This user already exists.");
+        if(!appUserRepository.existsByPESEL(request.getPESEL())) {
+            if (appUserRepository.existsByEmail(request.getEmail())) {
+                throw new ApiRequestException("User with email "+ request.getEmail()+" hase been already registered");
+            } else {
+                List<Authority> authorityList = new ArrayList<>();
+                authorityList.add(createAuthority("USER", "User role"));
+                AppUser.AppUserBuilder builder = mapper.convertToAppUserBuilder(request);
+                builder.authorities(authorityList);
+                AppUser newUser = builder.build();
+                appUserRepository.save(newUser);
+                log.info("New user has been added.");
+            }
         } else {
-            List<Authority> authorityList = new ArrayList<>();
-            authorityList.add(createAuthority("USER", "User role"));
-            String encodedPassword = passwordEncoder.encode(request.getPassword());
-            AppUser newUser = new AppUser(
-                    request.getName(),
-                    request.getSurname(),
-                    request.getEmail(),
-                    encodedPassword,
-                    request.getEmail(),
-                    request.getDob(),
-                    request.getPhoneNumber()
-            );
-            newUser.setEnabled(true);
-            newUser.setAuthorities(authorityList);
-            appUserRepository.save(newUser);
-            log.info("New user has been added.");
+            throw new ApiRequestException("User with PESEL "+ request.getPESEL() +" hase been already registered");
         }
     }
 
