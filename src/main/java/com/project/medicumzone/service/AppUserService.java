@@ -29,7 +29,7 @@ public class AppUserService {
     public void addNewUser(AppUserSignUpRequest request) {
         if(!appUserRepository.existsByPESEL(request.getPESEL())) {
             if (appUserRepository.existsByEmail(request.getEmail())) {
-                throw new ApiRequestException("User with email "+ request.getEmail()+" hase been already registered");
+                throw new ApiRequestException("User with email "+ request.getEmail()+" has been already registered");
             } else {
                 List<Authority> authorityList = new ArrayList<>();
                 authorityList.add(createAuthority());
@@ -37,10 +37,10 @@ public class AppUserService {
                 builder.authorities(authorityList);
                 AppUser newUser = builder.build();
                 appUserRepository.save(newUser);
-                log.info("New user has been added.");
+                log.info("User has been registered successfully.");
             }
         } else {
-            throw new ApiRequestException("User with PESEL "+ request.getPESEL() +" hase been already registered");
+            throw new ApiRequestException("User with PESEL "+ request.getPESEL() +" has been already registered");
         }
     }
 
