@@ -13,27 +13,17 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class AppointmentID implements Serializable {
 
     @Column(name="doctor_id")
     private Long doctorId;
 
-    @Column(name ="client_id")
-    private Long clientId;
+    @Column(name ="appUser_id")
+    private Long appUserId;
 
     @Column(name = "clinic_id")
     private Long clinicId;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AppointmentID that = (AppointmentID) o;
-        return Objects.equals(doctorId, that.doctorId) && Objects.equals(clientId, that.clientId) && Objects.equals(clinicId, that.clinicId);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(doctorId, clientId, clinicId);
-    }
 }

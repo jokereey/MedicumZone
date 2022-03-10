@@ -19,9 +19,9 @@ public class Appointment {
     private Doctor doctor;
 
     @ManyToOne
-    @MapsId("clientId")
-    @JoinColumn(name = "client_id", nullable = false,foreignKey = @ForeignKey(name="appointment_client_id_fk"))
-    private Client client;
+    @MapsId("appUserId")
+    @JoinColumn(name = "app_user_id", nullable = false,foreignKey = @ForeignKey(name="appointment_user_id_fk"))
+    private AppUser appUser;
 
     @ManyToOne
     @MapsId("clinicId")

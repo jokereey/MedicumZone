@@ -1,7 +1,6 @@
 package com.project.medicumzone.controller;
 
 import com.project.medicumzone.io.dto.DoctorRatioDto;
-import com.project.medicumzone.io.enitity.DoctorRatio;
 import com.project.medicumzone.service.DoctorRatioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/doctor-ratio")
 @Slf4j
-public class RatioController {
+public class DoctorRatioController {
     private final DoctorRatioService service;
 
-    public RatioController(DoctorRatioService service) {
+    public DoctorRatioController(DoctorRatioService service) {
         this.service = service;
     }
 

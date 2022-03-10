@@ -52,6 +52,8 @@ public class Clinic {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "clinic")
     private List<Appointment> appointments = new ArrayList<>();
 
+    //todo: implement clinic open hours
+
     public Clinic(String clinicName, String streetName, String zipCode, City city) {
         this.clinicName = clinicName;
         this.streetName = streetName;

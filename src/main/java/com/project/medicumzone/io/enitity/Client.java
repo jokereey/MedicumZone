@@ -41,8 +41,7 @@ public class Client {
     private String email;
 
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "client")
-    private List<Appointment> appointments = new ArrayList<>();
+
 
     public Client(String firstName, String lastName, String phoneNumber, String email) {
         this.firstName = firstName;

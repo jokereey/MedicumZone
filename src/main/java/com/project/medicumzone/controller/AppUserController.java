@@ -22,11 +22,10 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "http://localhost:4200")
 public class AppUserController {
 
-    @Autowired
     private final AppUserService appUserService;
 
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<String> addNewUser(@RequestBody @Valid AppUserSignUpRequest request){
         log.info("Incoming request with main credentials: " + request);
         appUserService.addNewUser(request);

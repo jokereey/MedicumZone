@@ -49,6 +49,9 @@ public class Doctor implements Serializable {
     @Fetch(FetchMode.SUBSELECT)
     private List<DoctorRatio> ratios = new ArrayList<>();
 
+
+    //todo: implement doctor's schedule -  on what days they can invite patients? what hours?
+
     public Doctor(String name, String surname, Clinic clinic) {
         this.name = name;
         this.surname = surname;
