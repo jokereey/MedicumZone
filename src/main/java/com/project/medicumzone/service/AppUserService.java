@@ -8,8 +8,6 @@ import com.project.medicumzone.repository.AppUserRepository;
 import com.project.medicumzone.io.request.AppUserSignUpRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class AppUserService {
                 throw new ApiRequestException("User with email "+ request.getEmail()+" hase been already registered");
             } else {
                 List<Authority> authorityList = new ArrayList<>();
-                authorityList.add(createAuthority("USER", "User role"));
+                authorityList.add(createAuthority());
                 AppUser.AppUserBuilder builder = mapper.convertToAppUserBuilder(request);
                 builder.authorities(authorityList);
                 AppUser newUser = builder.build();
@@ -46,10 +44,10 @@ public class AppUserService {
         }
     }
 
-    private Authority createAuthority(String roleCode, String roleDescription) {
+    private Authority createAuthority() {
         Authority authority = new Authority();
-        authority.setRoleCode(roleCode);
-        authority.setRoleDescription(roleDescription);
+        authority.setRoleCode("USER");
+        authority.setRoleDescription("User role");
         return authority;
     }
 }
