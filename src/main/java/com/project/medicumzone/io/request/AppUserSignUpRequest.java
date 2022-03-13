@@ -1,9 +1,7 @@
 package com.project.medicumzone.io.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +11,8 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
+@Builder
 public class AppUserSignUpRequest {
 
     @NotNull
