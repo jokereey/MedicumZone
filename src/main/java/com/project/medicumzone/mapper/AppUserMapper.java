@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Converter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -25,6 +26,7 @@ public class AppUserMapper {
                 .email(request.getEmail())
                 .username(request.getEmail())
                 .enabled(true)
+                .appointments(Collections.emptyList())
                 .password(passwordEncoder.encode(request.getPassword()));
     }
 }

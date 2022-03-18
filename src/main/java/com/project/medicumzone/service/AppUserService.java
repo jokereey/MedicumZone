@@ -26,7 +26,7 @@ public class AppUserService {
         return appUserRepository.findAll();
     }
 
-    public void addNewUser(AppUserSignUpRequest request) {
+    public AppUser addNewUser(AppUserSignUpRequest request) {
         if (!appUserRepository.existsByPESEL(request.getPESEL())) {
             if (appUserRepository.existsByEmail(request.getEmail())) {
                 throw new ApiRequestException("User with email " + request.getEmail() + " has been already registered");
@@ -38,6 +38,7 @@ public class AppUserService {
                 AppUser newUser = builder.build();
                 appUserRepository.save(newUser);
                 log.info("User has been registered successfully.");
+                return newUser;
             }
         } else {
             throw new ApiRequestException("User with PESEL " + request.getPESEL() + " has been already registered");

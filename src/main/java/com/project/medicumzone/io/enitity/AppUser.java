@@ -61,7 +61,7 @@ public class AppUser implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id")
             ,inverseJoinColumns = @JoinColumn(referencedColumnName ="id" ))
-    private List<Authority> authorities;
+    private List<Authority> authorities = new ArrayList<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "appUser")
     private List<Appointment> appointments = new ArrayList<>();
