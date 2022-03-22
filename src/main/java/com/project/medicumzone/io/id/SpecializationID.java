@@ -14,8 +14,10 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 public class SpecializationID implements Serializable {
+
     @Column(name="doctor_specialization_id")
     private Long doctorSpecializationId;
+
     @Column(name="doctor_id")
     private Long doctorId;
 

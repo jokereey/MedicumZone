@@ -10,8 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Table
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Specialization {
@@ -19,16 +17,48 @@ public class Specialization {
     @EmbeddedId
     private SpecializationID specializationID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("doctorId")
     @JoinColumn(name="doctor_id",
             foreignKey =@ForeignKey(name="doctor_id_fk")
     )
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("doctorSpecializationId")
     @JoinColumn(name="doctorSpecialization_id",foreignKey =@ForeignKey(name="specialization_id_fk") )
     private DoctorSpecialization doctorSpecialization;
 
+    public Specialization(Doctor doctor, DoctorSpecialization doctorSpecialization) {
+        this.doctor = doctor;
+        this.doctorSpecialization = doctorSpecialization;
+    }
+
+    public Specialization(SpecializationID specializationID) {
+        this.specializationID = specializationID;
+    }
+
+    public void setSpecializationID(SpecializationID specializationID) {
+        this.specializationID = specializationID;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setDoctorSpecialization(DoctorSpecialization doctorSpecialization) {
+        this.doctorSpecialization = doctorSpecialization;
+    }
+
+    public SpecializationID getSpecializationID() {
+        return specializationID;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public DoctorSpecialization getDoctorSpecialization() {
+        return doctorSpecialization;
+    }
 }

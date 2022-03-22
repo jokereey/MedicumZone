@@ -2,12 +2,17 @@ package com.project.medicumzone.io.enitity;
 
 
 import com.project.medicumzone.io.id.AppointmentID;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class Appointment {
 
     @EmbeddedId
@@ -29,4 +34,24 @@ public class Appointment {
     private Clinic clinic;
 
     private LocalDateTime appointmentDate;
+
+    public Appointment(Doctor doctor, AppUser appUser, Clinic clinic, LocalDateTime appointmentDate) {
+        this.doctor = doctor;
+        this.appUser = appUser;
+        this.clinic = clinic;
+        this.appointmentDate = appointmentDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Appointment that = (Appointment) o;
+        return Objects.equals(appointmentID, that.appointmentID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(appointmentID);
+    }
 }

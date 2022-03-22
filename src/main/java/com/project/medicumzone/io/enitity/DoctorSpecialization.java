@@ -11,10 +11,7 @@ import java.util.List;
 
 @Entity
 @Table
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class DoctorSpecialization {
     @Id
     @SequenceGenerator(
@@ -30,7 +27,34 @@ public class DoctorSpecialization {
 
     private String name;
 
-    @OneToMany(mappedBy = "doctorSpecialization",cascade = {CascadeType.PERSIST},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "doctorSpecialization",fetch = FetchType.LAZY)
     private List<Specialization> specializations = new ArrayList<>();
 
+    public DoctorSpecialization(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Specialization> getSpecializations() {
+        return specializations;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpecializations(List<Specialization> specializations) {
+        this.specializations = specializations;
+    }
 }
