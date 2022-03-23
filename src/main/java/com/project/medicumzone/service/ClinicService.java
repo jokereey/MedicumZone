@@ -33,6 +33,10 @@ public class ClinicService {
         }
     }
 
+    public boolean existsById(Long id){
+        return clinicRepository.existsById(id);
+    }
+
     public Long getNumberOfClinics() {
         return clinicRepository.count();
     }

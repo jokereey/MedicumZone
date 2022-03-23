@@ -16,4 +16,7 @@ public class DoctorService {
     public List<Doctor> getAll(){
         return doctorRepository.findAll();
     }
+    public boolean existsById(Long id){
+        return doctorRepository.existsById(id);
+    }
 }

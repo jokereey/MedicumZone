@@ -1,16 +1,21 @@
 package com.project.medicumzone.io.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class AppointmentRequest implements Serializable {
-    private String clientName;
-    private String clientSurname;
-    private String clientPhoneNumber;
+    private Long userId;
+    private Long doctorId;
+    private Long clinicId;
 
-    private String doctorName;
-    private String clinicName;
+    private LocalDateTime date;
 
-    private LocalDateTime appointmentDate;
 
 }

@@ -44,6 +44,9 @@ public class AppUserService {
             throw new ApiRequestException("User with PESEL " + request.getPESEL() + " has been already registered");
         }
     }
+    public boolean existsById(Long id){
+        return appUserRepository.existsById(id);
+    }
 
     private Authority createAuthority() {
         Authority authority = new Authority();
