@@ -33,6 +33,7 @@ public class Appointment {
     @JoinColumn(name = "clinic_id", nullable = false,foreignKey = @ForeignKey(name="appointment_clinic_id_fk"))
     private Clinic clinic;
 
+    @MapsId("appointmentDate")
     private LocalDateTime appointmentDate;
 
     public Appointment(Doctor doctor, AppUser appUser, Clinic clinic, LocalDateTime appointmentDate) {
@@ -40,6 +41,7 @@ public class Appointment {
         this.appUser = appUser;
         this.clinic = clinic;
         this.appointmentDate = appointmentDate;
+        this.appointmentID = new AppointmentID(doctor.getId(),appUser.getId(),clinic.getClinicId(),appointmentDate);
     }
 
     @Override

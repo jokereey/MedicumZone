@@ -2,6 +2,7 @@ package com.project.medicumzone.service;
 
 import com.project.medicumzone.io.enitity.City;
 import com.project.medicumzone.io.enitity.Clinic;
+import com.project.medicumzone.io.request.AppointmentRequest;
 import com.project.medicumzone.io.request.NewClinicRequestModel;
 import com.project.medicumzone.repository.ClinicRepository;
 import com.project.medicumzone.service.contract.HourCheck;
@@ -34,11 +35,11 @@ public class ClinicService implements HourCheck {
             log.info("New clinic has been added.");
         }
     }
-    public boolean hourCheck( LocalDateTime appointmentDate,Long... ids){
-        var clinicId = ids[0];
+    public boolean hourCheck(AppointmentRequest appointmentRequest){
+        var clinicId = appointmentRequest.getClinicId();
         Clinic clinic = clinicRepository.getById(clinicId);
-        var requestHour = appointmentDate.getHour();
-        var requestMinute = appointmentDate.getMinute();
+        var requestHour = appointmentRequest.getDate().getHour();
+        var requestMinute = appointmentRequest.getDate().getMinute();
         if(requestHour == clinic.getCloseHour()){
             return requestMinute <= 0;
         }
@@ -54,4 +55,7 @@ public class ClinicService implements HourCheck {
     }
 
 
+    public Clinic getById(Long clinicId) {
+        return clinicRepository.getById(clinicId);
+    }
 }

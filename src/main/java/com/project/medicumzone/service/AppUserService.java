@@ -54,4 +54,8 @@ public class AppUserService {
         authority.setRoleDescription("User role");
         return authority;
     }
+
+    public AppUser getById(Long userId) {
+        return appUserRepository.getById(userId);
+    }
 }

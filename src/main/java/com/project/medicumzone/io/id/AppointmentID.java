@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Embeddable
@@ -25,5 +26,7 @@ public class AppointmentID implements Serializable {
     @Column(name = "clinic_id")
     private Long clinicId;
 
+    @Column(name= "when")
+    private LocalDateTime appointmentDate;
 
 }

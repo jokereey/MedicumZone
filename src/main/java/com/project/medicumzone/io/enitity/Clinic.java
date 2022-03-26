@@ -2,9 +2,7 @@ package com.project.medicumzone.io.enitity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,8 +14,10 @@ import java.util.Objects;
 @Entity(name = "Clinic")
 @Table(name = "clinic")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Clinic {
     @Id
     @SequenceGenerator(
@@ -70,6 +70,13 @@ public class Clinic {
         this.streetName = streetName;
         this.zipCode = zipCode;
         this.city = city;
+    }
+
+    public Clinic(Long clinicId, String clinicName, Integer openHour, Integer closeHour) {
+        this.clinicId = clinicId;
+        this.clinicName = clinicName;
+        this.openHour = openHour;
+        this.closeHour = closeHour;
     }
 
     public Clinic(String clinicName, String streetName, String zipCode, City city, List<Doctor> availableDoctors, List<Appointment> appointments, int openHour, int closeHour) {

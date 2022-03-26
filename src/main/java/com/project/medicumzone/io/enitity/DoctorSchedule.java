@@ -38,13 +38,13 @@ public class DoctorSchedule implements Serializable {
     @JoinColumn(name = "clinic_id", nullable = false,foreignKey = @ForeignKey(name="schedule_clinic_id_fk"))
     private Clinic clinic;
 
-    private Double fromHour;
+    private Integer fromHour;
 
-    private Double endHour;
+    private Integer endHour;
 
 
 
-    public DoctorSchedule(Doctor doctor, WeekDay weekDay, Clinic clinic, Double fromHour, Double endHour) {
+    public DoctorSchedule(Doctor doctor, WeekDay weekDay, Clinic clinic, Integer fromHour, Integer endHour) {
         this.doctor = doctor;
         this.weekDay = weekDay;
         this.clinic = clinic;
