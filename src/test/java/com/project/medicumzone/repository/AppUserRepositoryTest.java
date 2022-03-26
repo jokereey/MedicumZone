@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -72,6 +75,15 @@ class AppUserRepositoryTest {
         return AppUser.builder()
                 .email(USER_EMAIL)
                 .username(USER_USERNAME)
+                .dob(LocalDateTime.now())
+                .enabled(true)
+                .password("passwordzik")
+                .phoneNumber("123123123")
+                .surname("surname")
+                .authorities(List.of())
+                .PESEL("12345678909883")
+                .name("name")
+                .surname("surname")
                 .build();
     }
 

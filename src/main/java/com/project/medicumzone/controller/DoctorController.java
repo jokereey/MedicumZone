@@ -36,6 +36,7 @@ public class DoctorController {
     @PostMapping
     public Doctor addDoctor(DoctorDto request){
         return null;
+        //todo: implement doctor adding
     }
 
 }

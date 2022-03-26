@@ -8,6 +8,7 @@ import com.project.medicumzone.io.enitity.DoctorRatio;
 import com.project.medicumzone.repository.AppUserRepository;
 import com.project.medicumzone.repository.DoctorRatioRepository;
 import com.project.medicumzone.repository.DoctorRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +18,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class DoctorRatioService {
+
     private final DoctorRatioRepository doctorRatioRepository;
     private final DoctorRepository doctorRepository;
     private final AppUserRepository appUserRepository;
     private final Clock clock = Clock.systemDefaultZone();
-
-    public DoctorRatioService(DoctorRatioRepository doctorRatioRepository, DoctorRepository doctorRepository, AppUserRepository appUserRepository) {
-        this.doctorRatioRepository = doctorRatioRepository;
-        this.doctorRepository = doctorRepository;
-        this.appUserRepository = appUserRepository;
-    }
 
     public DoctorRatio addNew(DoctorRatioDto request){
         Doctor doctor =  doctorRepository.getById(request.getDoctorId());
@@ -48,7 +45,7 @@ public class DoctorRatioService {
         }
 
     }
-    private boolean alreadyRated(Doctor doctor, AppUser user){
+    protected boolean alreadyRated(Doctor doctor, AppUser user){
         AtomicBoolean alreadyRated = new AtomicBoolean(false);
         doctor.getRatios().forEach(doctorRatio -> {
             if(doctorRatio.getRatedBy().equals( user.getId())){

@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +48,7 @@ public class AppUser implements UserDetails {
     @Email
     @NotBlank
     private String email;
-    @NotBlank
+    @NotNull
     @JsonFormat(pattern= "yyyy-MM-dd")
     private LocalDateTime dob;
     @NotBlank
@@ -60,7 +61,10 @@ public class AppUser implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id")
             ,inverseJoinColumns = @JoinColumn(referencedColumnName ="id" ))
-    private List<Authority> authorities;
+    private List<Authority> authorities = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "appUser")
+    private List<Appointment> appointments = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
