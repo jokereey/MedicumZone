@@ -35,7 +35,7 @@ public class ClinicService implements HourCheck {
             log.info("New clinic has been added.");
         }
     }
-    public boolean hourCheck(AppointmentRequest appointmentRequest){
+    public boolean isAvailableAtThisTime(AppointmentRequest appointmentRequest){
         var clinicId = appointmentRequest.getClinicId();
         Clinic clinic = clinicRepository.getById(clinicId);
         var requestHour = appointmentRequest.getDate().getHour();

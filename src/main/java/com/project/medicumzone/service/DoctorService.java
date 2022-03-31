@@ -31,7 +31,7 @@ public class DoctorService  implements HourCheck {
     }
 
 
-    public boolean hourCheck(AppointmentRequest appointmentRequest) {
+    public boolean isAvailableAtThisTime(AppointmentRequest appointmentRequest) {
         Doctor doctor = doctorRepository.getById(appointmentRequest.getDoctorId());
         var requestHour = appointmentRequest.getDate().getHour();
         var requestMinute = appointmentRequest.getDate().getMinute();
@@ -40,12 +40,10 @@ public class DoctorService  implements HourCheck {
                 .stream()
                 .filter(schedule -> Objects.equals(schedule.getClinic().getClinicId(), appointmentRequest.getClinicId()))
                 .filter(schedule -> Objects.equals(schedule.getWeekDay().getDayName(),requestDay))
-                .findFirst().orElseThrow(() ->new ApiRequestException("No matching clinic"));
-        System.out.println(doctorSchedule.getEndHour());
-        System.out.println(requestHour);
+                .findFirst().orElseThrow(() ->new ApiRequestException("No matching clinic or weekDay"));
+
         if(requestHour == doctorSchedule.getEndHour()){
-            System.out.println("here");
-            return requestMinute == 0;
+            return false;
         }
         return requestHour >= doctorSchedule.getFromHour() && requestHour<= doctorSchedule.getEndHour();
     }
