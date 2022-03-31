@@ -5,5 +5,5 @@ import com.project.medicumzone.io.request.AppointmentRequest;
 import java.time.LocalDateTime;
 
 public interface HourCheck {
-    public boolean hourCheck(AppointmentRequest appointmentRequest);
+    public boolean isAvailableAtThisTime(AppointmentRequest appointmentRequest);
 }
