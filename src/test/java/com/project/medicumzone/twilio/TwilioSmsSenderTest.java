@@ -5,6 +5,7 @@ import com.project.medicumzone.utils.PhoneNumberValidator;
 import com.twilio.rest.api.v2010.account.MessageCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource(
         properties = "application-it.properties"
 )
+
 class TwilioSmsSenderTest {
 
     private TwilioSmsSender underTest;

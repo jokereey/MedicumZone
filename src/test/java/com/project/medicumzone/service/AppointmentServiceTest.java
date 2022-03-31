@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 
 @ExtendWith({MockitoExtension.class})
 class AppointmentServiceTest {
@@ -52,7 +51,7 @@ class AppointmentServiceTest {
         given(appUserService.existsById(request.getUserId())).willReturn(true);
         given(doctorService.existsById(request.getDoctorId())).willReturn(true);
         given(clinicService.existsById(request.getClinicId())).willReturn(true);
-        given(clinicService.hourCheck(request)).willReturn(false);
+        given(clinicService.isAvailableAtThisTime(request)).willReturn(false);
         //When
         Assertions.assertThatThrownBy(() ->underTest.addNewAppointment(request))
                 .isInstanceOf(ApiRequestException.class)
@@ -67,8 +66,8 @@ class AppointmentServiceTest {
         given(appUserService.existsById(request.getUserId())).willReturn(true);
         given(doctorService.existsById(request.getDoctorId())).willReturn(true);
         given(clinicService.existsById(request.getClinicId())).willReturn(true);
-        given(clinicService.hourCheck(request)).willReturn(true);
-        given(doctorService.hourCheck(request)).willReturn(false);
+        given(clinicService.isAvailableAtThisTime(request)).willReturn(true);
+        given(doctorService.isAvailableAtThisTime(request)).willReturn(false);
         //When
         Assertions.assertThatThrownBy(() ->underTest.addNewAppointment(request))
                 .isInstanceOf(ApiRequestException.class)
@@ -124,7 +123,7 @@ class AppointmentServiceTest {
         given(appUserService.existsById(request.getUserId())).willReturn(true);
         given(doctorService.existsById(request.getDoctorId())).willReturn(false);
         //When
-        boolean isValid = underTest.validateRequest(request);
+        boolean isValid = underTest.validateRequestByExistence(request);
         //Then
         Assertions.assertThat(isValid).isFalse();
 
@@ -135,7 +134,7 @@ class AppointmentServiceTest {
         var request = createAppointmentRequest();
         given(appUserService.existsById(request.getUserId())).willReturn(true);
         //When
-        boolean isValid = underTest.validateRequest(request);
+        boolean isValid = underTest.validateRequestByExistence(request);
         //Then
         Assertions.assertThat(isValid).isFalse();
 
@@ -148,7 +147,7 @@ class AppointmentServiceTest {
         given(doctorService.existsById(request.getDoctorId())).willReturn(true);
         given(clinicService.existsById(request.getClinicId())).willReturn(false);
         //When
-        boolean isValid = underTest.validateRequest(request);
+        boolean isValid = underTest.validateRequestByExistence(request);
         //Then
         Assertions.assertThat(isValid).isFalse();
 
@@ -162,7 +161,7 @@ class AppointmentServiceTest {
         given(doctorService.existsById(request.getDoctorId())).willReturn(true);
         given(clinicService.existsById(request.getClinicId())).willReturn(true);
         //When
-        boolean isValid = underTest.validateRequest(request);
+        boolean isValid = underTest.validateRequestByExistence(request);
         //Then
         Assertions.assertThat(isValid).isTrue();
     }

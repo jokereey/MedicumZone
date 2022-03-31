@@ -17,16 +17,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class DoctorServiceTest {
-    
+
     private DoctorService underTest;
-    
+
     @Mock
     DoctorRepository doctorRepository;
     @Mock
@@ -34,25 +33,68 @@ public class DoctorServiceTest {
 
     @BeforeEach
     void setUp() {
-        underTest = new DoctorService(doctorRepository,translator);
+        underTest = new DoctorService(doctorRepository, translator);
     }
 
     @Test
-    void itShouldName() {
+    void doctorShouldNotBeAvailableAboveTime() {
         //Given
-        var clinic =getClinic();
+        var clinic = getClinic();
         var doctor = getDoctor();
-        assignSchedule(doctor,clinic);
+        assignSchedule(doctor, clinic);
         given(doctorRepository.getById(doctor.getId())).willReturn(doctor);
         given(translator.translate(any())).willReturn("Wtorek");
         //When
-        boolean result = underTest.hourCheck(request());
+        boolean result = underTest.isAvailableAtThisTime(request(createIncorrectAppointmentDateAboveTime()));
+        //Then
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void doctorShouldNotBeAvailableUnderTime() {
+        //Given
+        var clinic = getClinic();
+        var doctor = getDoctor();
+        assignSchedule(doctor, clinic);
+        given(doctorRepository.getById(doctor.getId())).willReturn(doctor);
+        given(translator.translate(any())).willReturn("Wtorek");
+        //When
+        boolean result = underTest.isAvailableAtThisTime(request(createIncorrectAppointmentDateUnderTime()));
+        //Then
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void doctorShouldNotBeAvailableExitTime() {
+        //Given
+        var clinic = getClinic();
+        var doctor = getDoctor();
+        assignSchedule(doctor, clinic);
+        given(doctorRepository.getById(doctor.getId())).willReturn(doctor);
+        given(translator.translate(any())).willReturn("Wtorek");
+        //When
+        boolean result = underTest.isAvailableAtThisTime(request(createIncorrectAppointmentDateExitTime()));
+        //Then
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void doctorShouldBeAvailable() {
+        //Given
+        var clinic = getClinic();
+        var doctor = getDoctor();
+        assignSchedule(doctor, clinic);
+        given(doctorRepository.getById(doctor.getId())).willReturn(doctor);
+        given(translator.translate(any())).willReturn("Wtorek");
+        //When
+        boolean result = underTest.isAvailableAtThisTime(request(createCorrectAppointmentDate()));
         //Then
         Assertions.assertTrue(result);
 
     }
 
-    private Doctor getDoctor(){
+
+    private Doctor getDoctor() {
         return Doctor.builder()
                 .id(1L)
                 .name("test")
@@ -60,7 +102,8 @@ public class DoctorServiceTest {
                 .clinicSchedules(new HashSet<>())
                 .build();
     }
-    private Clinic getClinic(){
+
+    private Clinic getClinic() {
         return Clinic.builder()
                 .clinicId(1L)
                 .clinicName("Test Clinic")
@@ -69,9 +112,10 @@ public class DoctorServiceTest {
                 .doctorSchedules(new ArrayList<>())
                 .build();
     }
-    private void assignSchedule(Doctor doctor, Clinic clinic){
+
+    private void assignSchedule(Doctor doctor, Clinic clinic) {
         WeekDay weekDay = new WeekDay("Wtorek");
-        DoctorSchedule doctorSchedule =  new DoctorSchedule(
+        DoctorSchedule doctorSchedule = new DoctorSchedule(
                 doctor,
                 weekDay,
                 clinic,
@@ -81,15 +125,29 @@ public class DoctorServiceTest {
         doctor.getClinicSchedules().add(doctorSchedule);
         clinic.getDoctorSchedules().add(doctorSchedule);
     }
-    private LocalDateTime createCorrectAppointmentDate(){
-       return LocalDateTime.of(2022,3,24,15,30);
+
+    private LocalDateTime createCorrectAppointmentDate() {
+        return LocalDateTime.of(2022, 3, 24, 12, 30);
     }
-    private AppointmentRequest request (){
-        return  new AppointmentRequest(
+
+    private LocalDateTime createIncorrectAppointmentDateAboveTime() {
+        return LocalDateTime.of(2022, 3, 24, 15, 30);
+    }
+
+    private LocalDateTime createIncorrectAppointmentDateUnderTime() {
+        return LocalDateTime.of(2022, 3, 24, 8, 0);
+    }
+
+    private LocalDateTime createIncorrectAppointmentDateExitTime() {
+        return LocalDateTime.of(2022, 3, 24, 15, 0);
+    }
+
+    private AppointmentRequest request(LocalDateTime localDateTime) {
+        return new AppointmentRequest(
                 1L,
                 1L,
                 1L,
-                createCorrectAppointmentDate()
+                localDateTime
         );
     }
 }
