@@ -38,6 +38,8 @@ services:
       VAULT_ADDR: "http://0.0.0.0:8200"
       VAULT_DEV_ROOT_TOKEN_ID: "vault-plaintext-root-token"
       VAULT_LOCAL_CONFIG: ""
+    volumes:
+      - vault:/run
     cap_add:
       - IPC_LOCK
     networks:
@@ -45,6 +47,7 @@ services:
         ipv4_address: 172.21.0.10
         aliases:
           - vault-server
+#    entrypoint: [ "sh", "-c", "sleep 5 && ./run/run.sh" ]
 
 networks:
   postgres:
@@ -57,3 +60,4 @@ networks:
 volumes:
   postgres:
   pgadmin:
+  vault:
