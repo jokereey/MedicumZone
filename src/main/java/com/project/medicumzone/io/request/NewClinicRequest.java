@@ -1,6 +1,8 @@
 package com.project.medicumzone.io.request;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,13 +10,15 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class NewClinicRequestModel {
-    @NotBlank
+@Builder
+@AllArgsConstructor
+public class NewClinicRequest {
+
     private String clinicName;
-    @NotBlank
+
     private String streetName;
-    @NotBlank
+
     private String zipCode;
-    @NotBlank
+
     private String city;
 }
