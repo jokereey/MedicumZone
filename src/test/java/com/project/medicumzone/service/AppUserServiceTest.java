@@ -82,6 +82,37 @@ class AppUserServiceTest {
 
     }
 
+    @Test
+    void itShouldGetAllUsers() {
+        //Given
+        //When
+        underTest.getAllUsers();
+        //Then
+        then(appUserRepository).should().findAll();
+
+    }
+
+    @Test
+    void itShouldCheckIfUserExistsById() {
+        //Given
+        var id = 1L;
+        //When
+        underTest.existsById(id);
+        //Then
+        then(appUserRepository).should().existsById(id);
+
+    }
+
+    @Test
+    void itShouldgetUserById() {
+        //Given
+        var id = 1L;
+        //When
+        underTest.getById(id);
+        //Then
+        then(appUserRepository).should().getById(id);
+
+    }
 
     private AppUserSignUpRequest createRequest(){
         return  AppUserSignUpRequest.builder()

@@ -20,6 +20,7 @@ import java.util.HashSet;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
 public class DoctorServiceTest {
@@ -90,9 +91,37 @@ public class DoctorServiceTest {
         boolean result = underTest.isAvailableAtThisTime(request(createCorrectAppointmentDate()));
         //Then
         Assertions.assertTrue(result);
-
     }
 
+    @Test
+    void itShouldGetAllDoctors() {
+        //Given
+
+        //When
+        underTest.getAll();
+        //Then
+        then(doctorRepository).should().findAll();
+    }
+
+    @Test
+    void itShouldCheckIfDoctorExists() {
+        //Given
+        Long doctorId = 1L;
+        //When
+        underTest.existsById(doctorId);
+        //Then
+        then(doctorRepository).should().existsById(1L);
+    }
+
+    @Test
+    void itShouldGetById() {
+        //Given
+        Long doctorId = 1L;
+        //When
+        underTest.getById(doctorId);
+        //Then
+        then(doctorRepository).should().getById(1L);
+    }
 
     private Doctor getDoctor() {
         return Doctor.builder()

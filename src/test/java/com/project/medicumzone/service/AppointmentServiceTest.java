@@ -1,6 +1,9 @@
 package com.project.medicumzone.service;
 
 import com.project.medicumzone.exception.ApiRequestException;
+import com.project.medicumzone.io.enitity.AppUser;
+import com.project.medicumzone.io.enitity.Clinic;
+import com.project.medicumzone.io.enitity.Doctor;
 import com.project.medicumzone.io.request.AppointmentRequest;
 import com.project.medicumzone.repository.AppointmentRepository;
 import org.assertj.core.api.Assertions;
@@ -15,6 +18,8 @@ import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith({MockitoExtension.class})
 class AppointmentServiceTest {
@@ -35,12 +40,45 @@ class AppointmentServiceTest {
     }
 
     @Test
-    void itShouldAddNewAppointment() {
-        //todo: implement
+    void itShouldSaveAppointment() {
         //Given
-        //When
-        //Then
+        var request =  createAppointmentRequest();
+        given(appUserService.existsById(request.getUserId())).willReturn(true);
+        given(doctorService.existsById(request.getDoctorId())).willReturn(true);
+        given(clinicService.existsById(request.getClinicId())).willReturn(true);
+        given(clinicService.isAvailableAtThisTime(request)).willReturn(true);
+        given(doctorService.isAvailableAtThisTime(request)).willReturn(true);
+        given(appointmentRepository.existsByAppointmentDateAndDoctorAndClinic(
+              any(),any(),any()
+        )).willReturn(false);
+        given(doctorService.getById(request.getDoctorId())).willReturn(new Doctor());
+        given(appUserService.getById(request.getUserId())).willReturn(new AppUser());
+        given(clinicService.getById(request.getClinicId())).willReturn(new Clinic());
 
+        //When
+        underTest.addNewAppointment(request);
+        //Then
+        then(appointmentRepository).should().saveAndFlush(any());
+    }
+
+    @Test
+    void itShouldThrowWhenDateIsTaken() {
+        //Given
+        var request =  createAppointmentRequest();
+        given(appUserService.existsById(request.getUserId())).willReturn(true);
+        given(doctorService.existsById(request.getDoctorId())).willReturn(true);
+        given(clinicService.existsById(request.getClinicId())).willReturn(true);
+        given(clinicService.isAvailableAtThisTime(request)).willReturn(true);
+        given(doctorService.isAvailableAtThisTime(request)).willReturn(true);
+        given(appointmentRepository.existsByAppointmentDateAndDoctorAndClinic(
+                any(),any(),any()
+        )).willReturn(true);
+        //When
+        Assertions.assertThatThrownBy(() ->underTest.addNewAppointment(request))
+                .isInstanceOf(ApiRequestException.class)
+                .hasMessageContaining("This date is already taken");
+        //Then
+        then(appointmentRepository).shouldHaveNoMoreInteractions();
     }
 
     @Test
@@ -167,6 +205,6 @@ class AppointmentServiceTest {
     }
 
     private AppointmentRequest createAppointmentRequest(){
-        return new AppointmentRequest(1L,4L,3L, LocalDateTime.now());
+        return new AppointmentRequest(1L,4L,3L, LocalDateTime.of(2022,1,1,16,30));
     }
 }
