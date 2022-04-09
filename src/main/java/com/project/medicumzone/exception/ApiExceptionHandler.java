@@ -19,8 +19,12 @@ public class ApiExceptionHandler {
     @ExceptionHandler(value = {UserNotFoundException.class})
     public ResponseEntity<Object> handleApiRequestException(UserNotFoundException e){
         ApiException apiException= new ApiException(e.getMessage(),e,HttpStatus.NOT_FOUND, ZonedDateTime.now());
-
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(value = {TranslationException.class})
+    public ResponseEntity<Object> handleApiRequestException(TranslationException e){
+        ApiException apiException= new ApiException(e.getMessage(),e,HttpStatus.BAD_REQUEST, ZonedDateTime.now());
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
 }
