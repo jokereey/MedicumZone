@@ -39,8 +39,8 @@ public class Doctor implements Serializable {
     @OneToMany(targetEntity = Specialization.class, fetch = FetchType.LAZY,cascade = {CascadeType.REFRESH})
     List<Specialization> specializations = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name="clinic_id",nullable = false,referencedColumnName = "clinicId",foreignKey =@ForeignKey(name="clinic_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="clinic_id",referencedColumnName = "clinicId",foreignKey =@ForeignKey(name="clinic_fk"))
     private Clinic clinic;
 
     @OneToMany(mappedBy = "doctor",cascade = {CascadeType.DETACH,CascadeType.REMOVE},fetch = FetchType.LAZY)
@@ -53,11 +53,6 @@ public class Doctor implements Serializable {
     @OneToMany(orphanRemoval = true,targetEntity = DoctorSchedule.class,fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<DoctorSchedule> clinicSchedules=  new HashSet<>();
 
-    public Doctor(String name, String surname, Clinic clinic) {
-        this.name = name;
-        this.surname = surname;
-        this.clinic = clinic;
-    }
 
     public Doctor(String name, String surname) {
         this.name = name;

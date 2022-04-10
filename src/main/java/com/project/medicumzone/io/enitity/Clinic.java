@@ -44,11 +44,11 @@ public class Clinic {
     private String zipCode;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="city_id",nullable = false,referencedColumnName = "id",foreignKey =@ForeignKey(name="city_fk"))
     private City city;
 
-    @OneToMany(mappedBy = "clinic",cascade = {CascadeType.PERSIST, CascadeType.REFRESH},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "clinic",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     private List<Doctor> availableDoctors = new ArrayList<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "clinic")
